@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <a class="btn btn-primary" href="{{route('post.create')}}">create</a>
 
     <table class="table table-light">
         <thead>
@@ -23,7 +24,9 @@
         <tbody>
             @foreach ($posts as $post)
             <tr>
-                <th scope="row">{{$post->id}}</th>
+                <th scope="row">
+                    <a href="{{ route('post.show', ['post'=> $post]) }}">{{$post->id}}</a>
+                </th>
                 <td>{{$post->title}}</td>
                 <td>{{$post->name}}</td>
                 <td>{{$post->created_by}}</td>
