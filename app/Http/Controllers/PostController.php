@@ -14,7 +14,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = post::all();
+        
+       return view('post.index',['posts'=> $posts]);
     }
 
     /**
@@ -24,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('post.create');
     }
 
     /**
@@ -35,7 +37,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        post::create($request->except('_token'));
+
+        return redirect('/posts');
     }
 
     /**
@@ -46,7 +50,7 @@ class PostController extends Controller
      */
     public function show(post $post)
     {
-        //
+        return view('post.show',['post'=>$post]);
     }
 
     /**
