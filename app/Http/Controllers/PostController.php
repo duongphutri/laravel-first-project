@@ -61,7 +61,7 @@ class PostController extends Controller
      */
     public function edit(post $post)
     {
-        //
+        return view('post.edit',['post'=>$post]);
     }
 
     /**
@@ -73,7 +73,9 @@ class PostController extends Controller
      */
     public function update(Request $request, post $post)
     {
-        //
+        $post->update($request->except('_token'));
+        
+        return redirect('/posts');
     }
 
     /**

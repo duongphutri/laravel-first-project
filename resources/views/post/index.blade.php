@@ -19,6 +19,7 @@
                 <th scope="col">title</th>
                 <th scope="col">name</th>
                 <th scope="col">created</th>
+                <th scope="col">action</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +31,10 @@
                 <td>{{$post->title}}</td>
                 <td>{{$post->name}}</td>
                 <td>{{$post->created_by}}</td>
+                <td>
+                    <a href="{{ route('post.edit',['post'=>$post])}}">edit</a>
+
+                </td>
             </tr>
             @endforeach
         </tbody>
