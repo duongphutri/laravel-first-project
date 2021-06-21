@@ -18,10 +18,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/posts',[PostController::class,'index']);
-Route::get('/post/{post}',[PostController::class,'show'])->name('post.show');
-Route::get('/post1/create',[PostController::class,'create'])->name('post.create');
-Route::post('/post/store',[PostController::class,'store']);
 
-Route::get('/post/{post}/edit',[PostController::class,'edit'])->name('post.edit');
-Route::post('/post/update/{post}',[PostController::class,'update'])->name('post.update');
+
+
+Route::group([
+    'as' => 'post.',         //Phan cua name route
+    'prefix' => 'post',      //Duong dan
+], function() {
+    Route::get('/index',[PostController::class,'index']);
+    Route::get('',[PostController::class,'index'])->name('index');
+    Route::get('{post}',[PostController::class,'show'])->name('show');
+
+    Route::get('/post1/create',[PostController::class,'create'])->name('create');
+    Route::post('store',[PostController::class,'store']);
+
+    Route::get('{post}/edit',[PostController::class,'edit'])->name('edit');
+    Route::post('update/{post}',[PostController::class,'update'])->name('update');
+
+    Route::get('destroy/{post}',[PostController::class,'destroy'])->name('destroy');
+});

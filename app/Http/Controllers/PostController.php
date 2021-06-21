@@ -39,7 +39,7 @@ class PostController extends Controller
     {
         post::create($request->except('_token'));
 
-        return redirect('/posts');
+        return redirect()->route('post.index');
     }
 
     /**
@@ -75,7 +75,7 @@ class PostController extends Controller
     {
         $post->update($request->except('_token'));
         
-        return redirect('/posts');
+        return redirect()->route('post.index');
     }
 
     /**
@@ -86,6 +86,8 @@ class PostController extends Controller
      */
     public function destroy(post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('post.index');
     }
 }

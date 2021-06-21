@@ -26,13 +26,15 @@
             @foreach ($posts as $post)
             <tr>
                 <th scope="row">
-                    <a href="{{ route('post.show', ['post'=> $post]) }}">{{$post->id}}</a>
+                    {{ $loop->iteration }}
                 </th>
                 <td>{{$post->title}}</td>
                 <td>{{$post->name}}</td>
                 <td>{{$post->created_by}}</td>
                 <td>
+                    <a href="{{ route('post.show', ['post'=> $post]) }}">view</a>
                     <a href="{{ route('post.edit',['post'=>$post])}}">edit</a>
+                    <a href="{{ route('post.destroy',['post'=>$post])}}">delete</a>
 
                 </td>
             </tr>
