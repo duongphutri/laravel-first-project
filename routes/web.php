@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,3 +38,24 @@ Route::group([
 
     Route::get('destroy/{post}',[PostController::class,'destroy'])->name('destroy');
 });
+
+Route::group([
+    'as' =>'news.',
+    'prefix' =>'news',
+],
+function(){
+
+    Route::get('/index',[NewsController::class,'index']);
+    Route::get('',[NewsController::class,'index'])->name('index');
+    Route::get('/{news}/show',[NewsController::class,'show'])->name('show');
+
+    Route::get('/create',[NewsController::class,'create'])->name('create');
+    Route::post('store',[NewsController::class,'store']);
+
+    Route::get('{news}/edit',[NewsController::class,'edit'])->name('edit');
+    Route::post('update/{news}',[NewsController::class,'update'])->name('update');
+
+    Route::get('destroy/{news}',[NewsController::class,'destroy'])->name('destroy');
+}
+
+);

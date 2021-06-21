@@ -10,6 +10,23 @@
 </head>
 
 <body>
+
+    @if ($errors->any())
+    <div class="row  mt-3">
+        <div class="col-md-12">
+            <div class="alert alert-warning alert-dismissable" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="alert-heading font-size-h4 font-w400">Hata!</h3>
+                @foreach ($errors->all() as $error)
+                <p class="mb-0">{{ $error }}</p>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    @endif
+
     <div class="container">
         @yield('content')
     </div>

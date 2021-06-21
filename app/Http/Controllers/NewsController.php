@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest;
-use App\Models\post;
+use App\Http\Requests\StoreNewsRequest;
+use App\Http\Requests\UpdateNewsRequest;
+use App\Models\news;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = post::all();
-        
-       return view('post.index',['posts'=> $posts]);
+        $listNews = news::all();
+
+        return view('news.index',['listNews' => $listNews]);
     }
 
     /**
@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post.create');
+        return view('news.create');
     }
 
     /**
@@ -37,59 +37,59 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePostRequest $request)
+    public function store(StoreNewsRequest $request)
     {
-        post::create($request->except('_token'));
+        news::create($request->except('_token'));
 
-        return redirect()->route('post.index');
+        return redirect()->route('news.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\news  $news
      * @return \Illuminate\Http\Response
      */
-    public function show(post $post)
+    public function show(news $news)
     {
-        return view('post.show',['post'=>$post]);
+        return view('news.show',['news'=>$news]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\news  $news
      * @return \Illuminate\Http\Response
      */
-    public function edit(post $post)
+    public function edit(news $news)
     {
-        return view('post.edit',['post'=>$post]);
+        return view('news.edit',['news'=>$news]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\news  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostRequest $request, post $post)
+    public function update(UpdateNewsRequest $request, news $news)
     {
-        $post->update($request->except('_token'));
-        
-        return redirect()->route('post.index');
+        $news->update($request->except('_token'));
+
+        return redirect()->route('news.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\news  $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy(post $post)
+    public function destroy(news $news)
     {
-        $post->delete();
-
-        return redirect()->route('post.index');
+        $news->delete();
+        
+        return redirect()->route('news.index');
     }
 }
