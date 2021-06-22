@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -58,4 +59,23 @@ function(){
     Route::get('destroy/{news}',[NewsController::class,'destroy'])->name('destroy');
 }
 
+);
+
+Route::group([
+    'as' =>'categories.',
+    'prefix'=>'categories',
+],
+function(){
+    Route::get('/index',[CategoriesController::class,'index']);
+    Route::get('',[CategoriesController::class,'index'])->name('index');
+    Route::get('/{category}/show',[CategoriesController::class,'show'])->name('show');
+
+    Route::get('/create',[CategoriesController::class,'create'])->name('create');
+    Route::post('store',[CategoriesController::class,'store']);
+
+    Route::get('{category}/edit',[CategoriesController::class,'edit'])->name('edit');
+    Route::post('update/{category}',[CategoriesController::class,'update'])->name('update');
+
+    Route::get('destroy/{category}',[CategoriesController::class,'destroy'])->name('destroy');
+}
 );
