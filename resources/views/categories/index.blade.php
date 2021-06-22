@@ -1,7 +1,7 @@
 @extends ('layouts.app')
 @section('content')
-<a class="btn btn-primary" href="{{route('categories.create')}}">create</a>
- 
+    <a class="btn btn-primary" href="{{ route('categories.create') }}">create</a>
+
     <table class="table table-light">
         <thead>
             <tr>
@@ -15,17 +15,17 @@
                     <th scope="row">
                         {{ $loop->iteration }}
                     </th>
-                    <td>{{ $categories->name }}</td>
+                    <td>
+                        <a href="{{ route('categories.children',['category' => $categories]) }}">{{ $categories->name }}</a>
+                    </td>
                     <td>
                         <a href="{{ route('categories.show', ['category' => $categories]) }}">view</a>
                         <a href="{{ route('categories.edit', ['category' => $categories]) }}">edit</a>
                         <a href="{{ route('categories.destroy', ['category' => $categories]) }}">delete</a>
-                        
+
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 @endsection
-
-

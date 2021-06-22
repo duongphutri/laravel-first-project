@@ -80,6 +80,8 @@ Route::group(
         Route::post('update/{category}', [CategoriesController::class, 'update'])->name('update');
 
         Route::get('destroy/{category}', [CategoriesController::class, 'destroy'])->name('destroy');
+        
+        Route::get('/{category}/children',[CategoriesController::class,'children'])->name('children');
     }
 );
 

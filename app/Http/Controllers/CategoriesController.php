@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\categories;
+use App\Models\Product;
+use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -78,6 +80,11 @@ class CategoriesController extends Controller
         $category->update($request->except('_token'));
 
         return redirect()->route('categories.index');
+    }
+    public function children(categories $category){
+        $children = $category->products;
+
+        return view('categories.children',['children'=>$children]);
     }
 
     /**
