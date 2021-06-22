@@ -15,4 +15,9 @@ class Product extends Model
         'created_by',
 
     ];
+
+    public function category()
+    {
+        return $this->hasOne(categories::class, 'id', 'category_id');
+    }
 }

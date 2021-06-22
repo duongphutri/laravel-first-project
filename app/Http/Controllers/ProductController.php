@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\categories;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        $categories = categories::all();
+
+        return view('product.create', ['categories' => $categories]);
     }
 
     /**
@@ -39,7 +42,6 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        // dd($request->all());
         Product::create($request->except('_token'));
 
         return redirect()->route('product.index');
@@ -64,7 +66,11 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('product.edit',['product'=>$product]);
+        $categories = categories::all();
+        return view('product.edit', [
+            'product' => $product,
+            'categories' => $categories,
+        ]);
     }
 
     /**

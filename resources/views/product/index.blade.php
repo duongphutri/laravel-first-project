@@ -17,7 +17,7 @@
                 {{ $loop->iteration }}
             </th>
             <td>{{$product->name}}</td>
-            <td>{{$product->category_id}}</td>
+            <td>{{$product->category ? $product->category->name :'NULL'}}</td>
             <td>{{$product->created_by}}</td>
             
             <td>
