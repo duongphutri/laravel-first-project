@@ -1,6 +1,6 @@
 @extends ('layouts.app')
 @section('content')
-    <a class="btn btn-primary" href="{{ route('categories.create') }}">create</a>
+    <a class="btn btn-primary" href="{{ route('product.create') }}">create</a>
 
     <table class="table table-light">
         <thead>
@@ -11,25 +11,30 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($children as $child)
-                @if ($child->is_show)
-                    <tr>
-                        <th scope="row">
-                            {{ $loop->iteration }}
-                        </th>
+            @if (count($children))
+                @foreach ($children as $child)
+                    @if ($child->is_show)
+                        <tr>
+                            <th scope="row">
+                                {{ $loop->iteration }}
+                            </th>
 
-                        <td>
-                            <a href=" {{ route('product.show', ['product' => $child]) }} ">
-                                {{ $child->name ? $child->name : 'NULL' }}
-                            </a>
-                        </td>
-                        <td>
-                            {{ $child->category ? $child->category->name : 'NULL' }}
-                        </td>
-                    </tr>
-                @endif
-
-            @endforeach
+                            <td>
+                                <a href=" {{ route('product.show', ['product' => $child]) }} ">
+                                    {{ $child->name ? $child->name : 'NULL' }}
+                                </a>
+                            </td>
+                            <td>
+                                {{ $child->category ? $child->category->name : 'NULL' }}
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+            @else
+                <tr>
+                    <td ><h3>No data....... Please Create</h3></td>
+                </tr>
+            @endif
         </tbody>
     </table>
 @endsection

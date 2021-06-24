@@ -18,8 +18,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        
-        return view('product.index',['products'=>$products]);
+
+        return view('product.index', ['products' => $products]);
     }
 
     /**
@@ -52,7 +52,7 @@ class ProductController extends Controller
             $pathSaveImage = $storedPath->getPathname();            //lay link images/ten file
             $data['image'] = $pathSaveImage;
         }
-        
+
         Product::create($data);
 
         return redirect()->route('product.index');
@@ -66,7 +66,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('product.show',['product'=>$product]);
+        return view('product.show', ['product' => $product]);
     }
 
     /**
@@ -94,14 +94,14 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         $data = $request->except('_token');
-        
-        if(isset($data['image'])){
+
+        if (isset($data['image'])) {
             if ($product->image) {
                 @unlink($product->image);
             }
             $image = $data['image'];
             $imageName = $image->getClientOriginalName();
-            $storedPath = $image->move('images',$imageName);
+            $storedPath = $image->move('images', $imageName);
             $pathSaveImage = $storedPath->getPathname();
             $data['image'] = $pathSaveImage;
         };
@@ -120,6 +120,17 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
+
+        return redirect()->route('product.index');
+    }
+
+    public function destroyAllProduct(Request $request)
+    {
+        $listProduct = $request->deleteProduct;
+
+        foreach ($listProduct as $productId) {
+            Product::find($productId)->delete();
+        }
 
         return redirect()->route('product.index');
     }

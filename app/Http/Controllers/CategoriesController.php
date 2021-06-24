@@ -81,6 +81,7 @@ class CategoriesController extends Controller
 
         return redirect()->route('categories.index');
     }
+    
     public function children(categories $category){
         $children = $category->products;
 

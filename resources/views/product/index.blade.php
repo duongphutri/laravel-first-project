@@ -4,17 +4,24 @@
     <table class="table table-light">
         <thead>
             <tr>
+                <th scope="col">*</th>
                 <th scope="col">#</th>
                 <th scope="col">name</th>
                 <th scope="col">category</th>
                 <th scope="col">image</th>
                 <th scope="col">created</th>
                 <th scope="col">Show</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
+            <form action="{{ route('product.destroyAllProduct') }}" method="post">
+                @csrf
             @foreach ($products as $product)
                 <tr>
+                    <td>
+                        <input type="checkbox" id="vehicle1" name="deleteProduct[]" value="{{ $product->id }}">
+                    </td>
                     <th scope="row">
                         {{ $loop->iteration }}
                     </th>
@@ -33,6 +40,8 @@
                     </td>
                 </tr>
             @endforeach
+            <button type="submit">DeleteAll</button>
+        </form>
         </tbody>
     </table>
 @endsection

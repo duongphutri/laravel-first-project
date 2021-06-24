@@ -102,5 +102,7 @@ Route::group(
         Route::post('update/{product}', [ProductController::class, 'update'])->name('update');
 
         Route::get('destroy/{product}', [ProductController::class, 'destroy'])->name('destroy');
+
+        Route::post('destroy/all', [ProductController::class,'destroyAllProduct'])->name('destroyAllProduct');
     }
 );
