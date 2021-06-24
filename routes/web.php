@@ -91,16 +91,16 @@ Route::group(
         'prefix' => 'product',
     ],
     function () {
-        Route::get('/index', [ProductController::class, 'index']);
+        Route::get('index', [ProductController::class, 'index']);
         Route::get('', [ProductController::class, 'index'])->name('index');
-        Route::get('/{product}/show', [ProductController::class, 'show'])->name('show');
+        Route::get('show/{product}', [ProductController::class, 'show'])->name('show');
 
-        Route::get('/create', [ProductController::class, 'create'])->name('create');
+        Route::get('create', [ProductController::class, 'create'])->name('create');
         Route::post('store', [ProductController::class, 'store'])->name('store');
 
         Route::get('{product}/edit', [ProductController::class, 'edit'])->name('edit');
         Route::post('update/{product}', [ProductController::class, 'update'])->name('update');
 
-         Route::get('destroy/{product}', [ProductController::class, 'destroy'])->name('destroy');
+        Route::get('destroy/{product}', [ProductController::class, 'destroy'])->name('destroy');
     }
 );

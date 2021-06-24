@@ -1,4 +1,3 @@
-
 @extends ('layouts.app')
 @section('content')
     <a class="btn btn-primary" href="{{ route('categories.create') }}">create</a>
@@ -12,14 +11,24 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($children as $children)
-                <tr>
-                    <th scope="row">
-                        {{ $loop->iteration }}
-                    </th>
-                    <td>{{ $children->name ? $children->name : 'NULL' }}</td>
-                    <td>{{ $children->category ? $children->category->name : 'NULL' }}</td>
-                </tr>
+            @foreach ($children as $child)
+                @if ($child->is_show)
+                    <tr>
+                        <th scope="row">
+                            {{ $loop->iteration }}
+                        </th>
+
+                        <td>
+                            <a href=" {{ route('product.show', ['product' => $child]) }} ">
+                                {{ $child->name ? $child->name : 'NULL' }}
+                            </a>
+                        </td>
+                        <td>
+                            {{ $child->category ? $child->category->name : 'NULL' }}
+                        </td>
+                    </tr>
+                @endif
+
             @endforeach
         </tbody>
     </table>

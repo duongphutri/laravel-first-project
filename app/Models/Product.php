@@ -13,6 +13,7 @@ class Product extends Model
         'name',
         'category_id',
         'created_by',
+        'is_show',
 
     ];
 

@@ -24,6 +24,16 @@
                 <label for="exampleInputEmail1">create</label>
                 <input type="text" class="form-control" name="created_by" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter create">
             </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" value="0" class="form-check-input" name="is_show">hide
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" value="1" class="form-check-input" name="is_show" checked>show
+                </label>
+              </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
