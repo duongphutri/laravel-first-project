@@ -14,6 +14,7 @@ class Product extends Model
         'category_id',
         'created_by',
         'is_show',
+        'image',
 
     ];
 

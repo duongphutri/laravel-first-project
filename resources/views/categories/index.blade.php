@@ -10,18 +10,18 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($categories as $categories)
+            @foreach ($categories as $category)
                 <tr>
                     <th scope="row">
                         {{ $loop->iteration }}
                     </th>
                     <td>
-                        <a href="{{ route('categories.children',['category' => $categories]) }}">{{ $categories->name }}</a>
+                        <a href="{{ route('categories.children',['category' => $category]) }}">{{ $category->name }}</a>
                     </td>
                     <td>
-                        <a href="{{ route('categories.show', ['category' => $categories]) }}">view</a>
-                        <a href="{{ route('categories.edit', ['category' => $categories]) }}">edit</a>
-                        <a href="{{ route('categories.destroy', ['category' => $categories]) }}">delete</a>
+                        <a href="{{ route('categories.show', ['category' => $category]) }}">view</a>
+                        <a href="{{ route('categories.edit', ['category' => $category]) }}">edit</a>
+                        <a href="{{ route('categories.destroy', ['category' => $category]) }}">delete</a>
 
                     </td>
                 </tr>

@@ -1,12 +1,18 @@
 @extends ('layouts.app') @section('content')
     <table>
         <div class="container">
-            <form action="{{ route('product.update', ['product' => $product]) }}" method="POST">
+            <form action="{{ route('product.update', ['product' => $product]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">title</label>
                     <input type="text" class="form-control" value="{{ $product->name }}" name="name"
                         id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">image </label>
+                    <input type="file" accept="image/*" class="form-control" name="image" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Enter image" value="">
+                        <img style="width: 30%" src="/{{ $product->image }} " alt="">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">create</label>

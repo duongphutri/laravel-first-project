@@ -7,6 +7,7 @@
                 <th scope="col">#</th>
                 <th scope="col">name</th>
                 <th scope="col">category</th>
+                <th scope="col">image</th>
                 <th scope="col">created</th>
                 <th scope="col">Show</th>
             </tr>
@@ -19,6 +20,9 @@
                     </th>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->category ? $product->category->name : 'NULL' }}</td>
+                    <td>
+                        <img style="width: 20%" src="/{{ $product->image }}" alt="">
+                    </td>
                     <td>{{ $product->created_by }}</td>
                     <td>{{ $product->is_show ? 'true' : 'false' }}</td>
                     <td>

@@ -42,7 +42,18 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        Product::create($request->except('_token'));
+        $data = $request->except('_token');
+
+        if (isset($data['image'])) {
+            $image = $data['image'];
+            $imageName = $image->getClientOriginalName();           //lay ten goc cua file
+            $storedPath = $image->move('images', $imageName);       //luu image->public/images/*
+
+            $pathSaveImage = $storedPath->getPathname();            //lay link images/ten file
+            $data['image'] = $pathSaveImage;
+        }
+        
+        Product::create($data);
 
         return redirect()->route('product.index');
     }
@@ -82,7 +93,20 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $product->update($request->except('_token'));
+        $data = $request->except('_token');
+        
+        if(isset($data['image'])){
+            if ($product->image) {
+                @unlink($product->image);
+            }
+            $image = $data['image'];
+            $imageName = $image->getClientOriginalName();
+            $storedPath = $image->move('images',$imageName);
+            $pathSaveImage = $storedPath->getPathname();
+            $data['image'] = $pathSaveImage;
+        };
+
+        $product->update($data);
 
         return redirect()->route('product.index');
     }
