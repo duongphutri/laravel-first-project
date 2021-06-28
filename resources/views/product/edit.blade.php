@@ -14,11 +14,11 @@
                         aria-describedby="emailHelp" placeholder="Enter image" value="">
                         <img style="width: 30%" src="/{{ $product->image }} " alt="">
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="exampleInputEmail1">create</label>
                     <input type="text" class="form-control" value="{{ $product->created_by }}" name="created_by"
                         id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter created_by">
-                </div>
+                </div> --}}
 
                 <div class="form-group">
                     <label class="control-label" for="Company">category</label>

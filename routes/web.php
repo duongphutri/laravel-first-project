@@ -67,6 +67,7 @@ Route::group(
     [
         'as' => 'categories.',
         'prefix' => 'categories',
+        'middleware' =>'auth',
     ],
     function () {
         Route::get('/index', [CategoriesController::class, 'index']);
@@ -89,6 +90,7 @@ Route::group(
     [
         'as' => 'product.',
         'prefix' => 'product',
+        'middleware' => 'auth',
     ],
     function () {
         Route::get('index', [ProductController::class, 'index']);

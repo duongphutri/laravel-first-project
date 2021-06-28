@@ -17,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(10);
 
         return view('product.index', ['products' => $products]);
     }
@@ -53,6 +53,8 @@ class ProductController extends Controller
             $data['image'] = $pathSaveImage;
         }
 
+
+        $data['created_by'] = auth()->user()->id;
         Product::create($data);
 
         return redirect()->route('product.index');
@@ -105,6 +107,8 @@ class ProductController extends Controller
             $pathSaveImage = $storedPath->getPathname();
             $data['image'] = $pathSaveImage;
         };
+
+        $data['created_by'] = auth()->user()->id;
 
         $product->update($data);
 

@@ -29,11 +29,11 @@
                     <input type="file" accept="image/*" class="form-control" name="image" id="exampleInputEmail1"
                         aria-describedby="emailHelp" placeholder="Enter image" value="{{ old('image') }}">
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="exampleInputEmail1">create</label>
                     <input type="text" value="{{ old('created_by') }}" class="form-control" name="created_by"
                         id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter create">
-                </div>
+                </div> --}}
                 <div class="form-check">
                     <label class="form-check-label">
                         <input type="radio" value="{{ old('is_show') ?? '0' }}" class="form-check-input"

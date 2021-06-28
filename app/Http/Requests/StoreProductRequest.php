@@ -26,7 +26,7 @@ class StoreProductRequest extends FormRequest
         return [
             'name' => 'required|string',
             'category_id' => 'required|numeric',
-            'created_by' => 'required|numeric',
+            // 'created_by' => 'required|numeric',
             'is_show' => 'required|boolean',
 
         ];
