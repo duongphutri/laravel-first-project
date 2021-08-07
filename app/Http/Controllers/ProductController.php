@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\categories;
+use App\Models\images;
 use App\Models\Product;
+use Faker\Provider\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -19,7 +22,7 @@ class ProductController extends Controller
     {
         $products = Product::paginate(10);
 
-        return view('product.index', ['products' => $products]);
+        return view('backend.product.index', ['products' => $products]);
     }
 
     /**
@@ -31,7 +34,7 @@ class ProductController extends Controller
     {
         $categories = categories::all();
 
-        return view('product.create', ['categories' => $categories]);
+        return view('backend.product.create', ['categories' => $categories]);
     }
 
     /**
@@ -43,21 +46,37 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $data = $request->except('_token');
+        $created = product::create($data);
 
         if (isset($data['image'])) {
             $image = $data['image'];
-            $imageName = $image->getClientOriginalName();           //lay ten goc cua file
-            $storedPath = $image->move('images', $imageName);       //luu image->public/images/*
+            $extension      = $image->getClientOriginalExtension();
+            $fileNm         =  (string) \Str::uuid() . ".$extension";
+            $fileCd         =  (string) \Str::uuid();
+            $fileOrigin     =  $image->getClientOriginalName();
+            $createBy       = auth()->user()->id;
+            $idproduct         = $created->id;
+            $object         = 'App\Models\product';
+            $order          = 99;
 
-            $pathSaveImage = $storedPath->getPathname();            //lay link images/ten file
-            $data['image'] = $pathSaveImage;
+            $imageData = [
+                'file_nm'           => $fileNm,
+                'file_cd'           => $fileCd,
+                'file_origin'       => $fileOrigin,
+                'imageable_id'      => $idproduct,
+                'imageable_object'  => $object,
+                'size'              => $image->getSize(),
+                'file_type'         => $extension,
+                'created_by'        => $createBy,
+                'order'             => $order,
+            ];
+
+            Storage::disk(config('filesystems.default'))->putFileAs("public/images", $image, $fileNm);
+
+            images::create($imageData);
         }
-
-
         $data['created_by'] = auth()->user()->id;
-        Product::create($data);
-
-        return redirect()->route('product.index');
+        return redirect()->route('admin.product.index');
     }
 
     /**
@@ -68,7 +87,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('product.show', ['product' => $product]);
+        return view('backend.product.show', ['product' => $product]);
     }
 
     /**
@@ -80,7 +99,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = categories::all();
-        return view('product.edit', [
+        return view('backend.product.edit', [
             'product' => $product,
             'categories' => $categories,
         ]);
@@ -96,23 +115,43 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         $data = $request->except('_token');
-
-        if (isset($data['image'])) {
-            if ($product->image) {
-                @unlink($product->image);
-            }
-            $image = $data['image'];
-            $imageName = $image->getClientOriginalName();
-            $storedPath = $image->move('images', $imageName);
-            $pathSaveImage = $storedPath->getPathname();
-            $data['image'] = $pathSaveImage;
-        };
-
-        $data['created_by'] = auth()->user()->id;
-
         $product->update($data);
 
-        return redirect()->route('product.index');
+        if (isset($data['image'])) {
+            $image = $data['image'];
+            $extension      = $image->getClientOriginalExtension();
+            $fileNm         =  (string) \Str::uuid() . ".$extension";
+            $fileCd         =  (string) \Str::uuid();
+            $fileOrigin     =  $image->getClientOriginalName();
+            $createBy       = auth()->user()->id;
+            $idproduct         = $product->id;
+            $object         = 'App\Models\product';
+            $order          = 99;
+
+            $imageData = [
+                'file_nm'           => $fileNm,
+                'file_cd'           => $fileCd,
+                'file_origin'       => $fileOrigin,
+                'imageable_id'      => $idproduct,
+                'imageable_object'  => $object,
+                'size'              => $image->getSize(),
+                'file_type'         => $extension,
+                'created_by'        => $createBy,
+                'order'             => $order,
+            ];
+            //kiem tra anh cu va xoa no
+            if ($product->image_product) {
+                Storage::disk(config('filesystems.default'))->delete("public/images/" . $product->image_product->file_nm);
+                $product->image_product->delete();
+            }
+
+            Storage::disk(config('filesystems.default'))->putFileAs("public/images", $image, $fileNm);
+
+            Image::create($imageData);
+        }
+
+        $data['created_by'] = auth()->user()->id;
+        return redirect()->route('admin.product.index');
     }
 
     /**
@@ -123,9 +162,14 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        if ($product->image_product) {
+            Storage::disk(config('filesystems.default'))->delete("public/images/" . $product->image_product->file_nm);
+            $product->image_product->delete();
+        }
+
         $product->delete();
 
-        return redirect()->route('product.index');
+        return redirect()->route('admin.product.index');
     }
 
     public function destroyAllProduct(Request $request)
@@ -136,6 +180,6 @@ class ProductController extends Controller
             Product::find($productId)->delete();
         }
 
-        return redirect()->route('product.index');
+        return redirect()->route('admin.product.index');
     }
 }
