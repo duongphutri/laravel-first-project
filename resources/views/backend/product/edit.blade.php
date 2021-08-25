@@ -14,7 +14,9 @@
                     <label for="exampleInputEmail1">image:</label>
                     <input type="file" accept="image/*" class="form-control" name="image" id="exampleInputEmail1"
                         aria-describedby="emailHelp" placeholder="Enter image" value="{{ old('image') }}">
-                    <img style="width: 20%" src=" /{{ $product->image }} " alt="">
+                    <img style="width: 20%"
+                        src="/storage/images/{{ isset($product->image_product) ? $product->image_product->file_nm : null }}"
+                        alt="">
                 </div>
                 {{-- <div class="form-group">
                     <label for="exampleInputEmail1">create</label>

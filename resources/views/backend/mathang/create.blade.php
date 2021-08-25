@@ -27,6 +27,11 @@
                             <input type="file" accept="image/*" class="form-control" name="image" placeholder="Enter image"
                                 value="{{ old('image') }}">
                         </div>
+                        {{-- <div class="form-group">
+                            <label for="exampleInputEmail1">soluong</label>
+                            <input type="text" value="{{ old('soluong') }}" class="form-control" name="soluong"
+                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter soluong">
+                        </div> --}}
                         <div class="form-group">
                             <label for="exampleInputEmail1">gia</label>
                             <input type="text" value="{{ old('gia') }}" class="form-control" name="gia"

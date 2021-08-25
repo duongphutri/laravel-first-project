@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\categories;
+use App\Models\mathang;
+use App\Models\Product;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->share('data_categories', categories::all());
+        view()->share('data_product', Product::all());
     }
 }

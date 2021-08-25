@@ -105,7 +105,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                 <li><a href="{{ route('admin.categories.index') }}">Chủng Loại</a></li>
                                 <li><a href="{{ route('admin.product.index') }}">Sản Phẩm</a></li>
-                                <li><a href="grids.html">Grids</a></li>
+                                <li><a href="{{ route('admin.mathang.index') }}">Maặt Hàng</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-book"></i>
+                                <span>Danh Mục Đơn Hàng</span>
+                            </a>
+                            <ul class="sub">
+
+                                <li><a href="{{ route('admin.donhang.index') }}">Đơn Hàng</a></li>
+                                <li><a href="{{ route('admin.chitietdonhang.index') }}">Chi Tiết Đơn Hàng</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-book"></i>
+                                <span>Danh Mục User</span>
+                            </a>
+                            <ul class="sub">
+
+                                <li><a href="{{ route('admin.user.index') }}">User</a></li>
+                                <li><a href="{{ route('chucnang.index') }}">Chức Năng</a></li>
+                                {{-- <li><a href="{{ route('admin.chitietdonhang.index') }}">Chi Tiết Đơn Hàng</a></li> --}}
                             </ul>
                         </li>
                     </ul>

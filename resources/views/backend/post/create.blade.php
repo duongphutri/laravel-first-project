@@ -1,4 +1,5 @@
-@extends ('layouts.app') @section('content')
+@extends ('admin_layout')
+@section('content')
 <table>
     <div class="container">
         <form action="/post/store" method="POST">

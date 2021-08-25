@@ -13,6 +13,7 @@ class mathang extends Model
         'id_product',
         // 'id_category',
         'name',
+        'soluong',
         'gia',
         'is_sale',
         'is_hot',

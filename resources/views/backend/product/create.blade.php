@@ -22,12 +22,12 @@
                         @else
                             <option value="0">NULL</option>
                         @endif
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">image:</label>
-                            <input type="file" accept="image/*" class="form-control" name="image" placeholder="Enter image"
-                                value="{{ old('image') }}">
-                        </div>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">image:</label>
+                    <input type="file" accept="image/*" class="form-control" name="image" placeholder="Enter image"
+                        value="{{ old('image') }}">
                 </div>
 
                 <div class="form-group">

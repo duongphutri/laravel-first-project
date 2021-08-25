@@ -147,7 +147,7 @@ class ProductController extends Controller
 
             Storage::disk(config('filesystems.default'))->putFileAs("public/images", $image, $fileNm);
 
-            Image::create($imageData);
+            images::create($imageData);
         }
 
         $data['created_by'] = auth()->user()->id;

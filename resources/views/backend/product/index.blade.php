@@ -17,7 +17,7 @@
                                     <th scope="col">id</th>
                                     <th scope="col">name</th>
                                     <th scope="col">category</th>
-                                    <th scope="col">image</th>
+                                    {{-- <th scope="col">image</th> --}}
                                     <th scope="col">created</th>
                                     <th scope="col">Show</th>
                                     <th scope="col">Action</th>

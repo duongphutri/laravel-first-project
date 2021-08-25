@@ -16,7 +16,9 @@
                                     <th scope="col">*</th>
                                     <th scope="col">id</th>
                                     <th scope="col">name</th>
-                                    <th scope="col">product</th>
+                                    <th scope="col">soluong</th>
+                                    <th scope="col">Chủng Loại</th>
+                                    <th scope="col">Sản Phẩm</th>
                                     <th scope="col">image</th>
                                     <th scope="col">gia</th>
                                     <th scope="col">is_sale</th>
@@ -39,13 +41,16 @@
                                                 {{ $mathang->id }}
                                             </th>
                                             <td>{{ $mathang->name }}</td>
+                                            <td>{{ $mathang->soluong }}</td>
+                                            <td>{{ $mathang->products ? $mathang->products->category->name : 'NULL' }}
+                                            </td>
                                             <td>{{ $mathang->products ? $mathang->products->name : 'NULL' }}</td>
                                             <td>
                                                 <img style="width: 20%"
                                                     src="/storage/images/{{ isset($mathang->image_mathang) ? $mathang->image_mathang->file_nm : null }}  "
                                                     alt="">
                                             </td>
-                                            <td>{{ $mathang->gia }}</td>
+                                            <td>{{ number_format($mathang->gia) }}</td>
                                             <td>{{ $mathang->is_sale }}</td>
                                             <td>{{ $mathang->is_hot }}</td>
                                             <td>{{ $mathang->is_new }}</td>
@@ -60,7 +65,6 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                </form>
                             </tbody>
                         </table>
                         {!! $mathangs->links('pagination::bootstrap-4') !!}

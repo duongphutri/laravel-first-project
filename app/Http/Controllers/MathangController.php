@@ -101,7 +101,7 @@ class mathangController extends Controller
         $product = Product::all();
         return view('backend.mathang.edit', [
             'mathang' => $mathang,
-            'product' => $product,
+            'products' => $product,
         ]);
     }
 
@@ -124,7 +124,7 @@ class mathangController extends Controller
             $fileCd         =  (string) \Str::uuid();
             $fileOrigin     =  $image->getClientOriginalName();
             $createBy       = auth()->user()->id;
-            $idmathang         = $mathang->id;
+            $idmathang      = $mathang->id;
             $object         = 'App\Models\mathang';
             $order          = 99;
 
@@ -146,7 +146,7 @@ class mathangController extends Controller
             }
 
             Storage::disk(config('filesystems.default'))->putFileAs("public/images", $image, $fileNm);
-
+            info($fileNm);
             images::create($imageData);
         }
 

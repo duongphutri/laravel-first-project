@@ -2,11 +2,15 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ChitietdonhangController;
+use App\Http\Controllers\ChucnangUserController;
+use App\Http\Controllers\donhangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\mathangController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,18 +23,34 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::post('/mail', [HomeController::class, 'postSendMail'])->name('sendmail');
+
+/////
+Route::post('/search/mathang', [HomeController::class, 'searchmathang'])->name('search.mathang');
+////
+Route::post('/addtocart', [HomeController::class, 'addtocart'])->name('addtocart');
+
 ////Frontend
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/trangchu', [HomeController::class, 'index']);
+Route::get('/{category}', [HomeController::class, 'index'])->name('category.filter');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/product', [HomeController::class, 'product'])->name('product');
+Route::get('/productdetails', [HomeController::class, 'productdetails'])->name('productdetails');
+Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
+Route::get('/blogsingle', [HomeController::class, 'blogsingle'])->name('blogsingle');
+Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
+Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
+Route::get('/error', [HomeController::class, 'error'])->name('error');
+Route::get('/login', [HomeController::class, 'login'])->name('login');
 
 
 /////Backend
-
-
 Route::group(
     [
         'as' => 'admin.',
-        'prefix' => 'admin'
+        'prefix' => 'admin',
+        // 'middleware' => "auth", "checkuser",
     ],
     function () {
         Route::get('/ad', [AdminController::class, 'index'])->name('ad');
@@ -84,7 +104,6 @@ Route::group(
             [
                 'as' => 'categories.',
                 'prefix' => 'categories',
-                'middleware' => 'auth',
             ],
             function () {
                 Route::get('/index', [CategoriesController::class, 'index']);
@@ -107,7 +126,6 @@ Route::group(
             [
                 'as' => 'product.',
                 'prefix' => 'product',
-                'middleware' => 'auth',
             ],
             function () {
                 Route::get('index', [ProductController::class, 'index']);
@@ -129,7 +147,6 @@ Route::group(
             [
                 'as' => 'mathang.',
                 'prefix' => 'mathang',
-                'middleware' => 'auth',
             ],
             function () {
                 Route::get('index', [mathangController::class, 'index']);
@@ -147,6 +164,91 @@ Route::group(
                 Route::post('destroy/all', [mathangController::class, 'destroyAllmathang'])->name('destroyAllmathang');
             }
         );
+        Route::group(
+            [
+                'as' => 'donhang.',
+                'prefix' => 'donhang',
+            ],
+            function () {
+                Route::get('index', [donhangController::class, 'index']);
+                Route::get('', [donhangController::class, 'index'])->name('index');
+                Route::get('show/{donhang}', [donhangController::class, 'show'])->name('show');
+
+                Route::get('create', [donhangController::class, 'create'])->name('create');
+                Route::post('store', [donhangController::class, 'store'])->name('store');
+
+                Route::get('{donhang}/edit', [donhangController::class, 'edit'])->name('edit');
+                Route::post('update/{donhang}', [donhangController::class, 'update'])->name('update');
+
+                Route::get('destroy/{donhang}', [donhangController::class, 'destroy'])->name('destroy');
+
+                Route::post('destroy/all', [donhangController::class, 'destroyAlldonhang'])->name('destroyAlldonhang');
+            }
+        );
+        Route::group(
+            [
+                'as' => 'chitietdonhang.',
+                'prefix' => 'chitietdonhang',
+            ],
+            function () {
+                Route::get('index', [ChitietdonhangController::class, 'index']);
+                Route::get('', [chitietdonhangController::class, 'index'])->name('index');
+                Route::get('show/{chitietdonhang}', [chitietdonhangController::class, 'show'])->name('show');
+
+                Route::get('create', [chitietdonhangController::class, 'create'])->name('create');
+                Route::post('store', [chitietdonhangController::class, 'store'])->name('store');
+
+                Route::get('{chitietdonhang}/edit', [chitietdonhangController::class, 'edit'])->name('edit');
+                Route::post('update/{chitietdonhang}', [chitietdonhangController::class, 'update'])->name('update');
+
+                Route::get('destroy/{chitietdonhang}', [chitietdonhangController::class, 'destroy'])->name('destroy');
+
+                Route::post('destroy/all', [chitietdonhangController::class, 'destroyAllchitietdonhang'])->name('destroyAllchitietdonhang');
+            }
+        );
+        Route::group(
+            [
+                'as' => 'user.',
+                'prefix' => 'user',
+            ],
+            function () {
+                Route::get('index', [UserController::class, 'index']);
+                Route::get('', [userController::class, 'index'])->name('index');
+                Route::get('show/{data}', [userController::class, 'show'])->name('show');
+
+                Route::get('create', [userController::class, 'create'])->name('create');
+                Route::post('store', [userController::class, 'store'])->name('store');
+
+                Route::get('{data}/edit', [userController::class, 'edit'])->name('edit');
+                Route::post('update/{data}', [userController::class, 'update'])->name('update');
+
+                Route::get('destroy/{data}', [userController::class, 'destroy'])->name('destroy');
+
+                Route::post('destroy/all', [userController::class, 'destroyAlluser'])->name('destroyAlluser');
+            }
+        );
+    }
+
+);
+Route::group(
+    [
+        'as' => 'chucnang.',
+        'prefix' => 'chucnang',
+    ],
+    function () {
+        Route::get('index', [ChucnangUserController::class, 'index']);
+        Route::get('', [chucnanguserController::class, 'index'])->name('index');
+        Route::get('show/{chucnang}', [chucnanguserController::class, 'show'])->name('show');
+
+        Route::get('create', [chucnanguserController::class, 'create'])->name('create');
+        Route::post('store', [chucnanguserController::class, 'store'])->name('store');
+
+        Route::get('{chucnang}/edit', [chucnanguserController::class, 'edit'])->name('edit');
+        Route::post('update/{chucnang}', [chucnanguserController::class, 'update'])->name('update');
+
+        Route::get('destroy/{chucnang}', [chucnanguserController::class, 'destroy'])->name('destroy');
+
+        Route::post('destroy/all', [chucnanguserController::class, 'destroyAllchucnanguser'])->name('destroyAllchucnang');
     }
 );
 

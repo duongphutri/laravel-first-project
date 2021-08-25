@@ -1,4 +1,5 @@
-@extends ('layouts.app') @section('content')
+@extends ('admin_layout')
+@section('content')
 <a class="btn btn-primary" href="{{route('post.create')}}">create</a>
 
 <table class="table table-light">
