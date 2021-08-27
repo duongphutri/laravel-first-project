@@ -4,7 +4,7 @@
 <table>
     <div class="container">
 
-        <form action=" {{ route('admin.users.update', $data->id) }} " method="POST" enctype="multipart/form-data">
+        <form action=" {{ route('admin.user.update', $data->id) }} " method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="exampleInputEmail1">name:</label>

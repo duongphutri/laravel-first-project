@@ -22,4 +22,8 @@ class categories extends Model
     {
         return $this->morphOne(images::class, 'imageable', 'imageable_object', 'imageable_id');
     }
+    public function mathangs()
+    {
+        return $this->hasMany(mathang::class, 'id_category', 'id');
+    }
 }

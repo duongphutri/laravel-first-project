@@ -19,7 +19,7 @@
                     @foreach ($data as $data)
                         <tr>
                             <td>
-                                {{-- <input type="checkbox" id="vehicle1" name="deletedata[]" value="{{ $data->id }}"> --}}
+                                <input type="checkbox" id="vehicle1" name="deletedata[]" value="{{ $data->id }}">
                             </td>
                             <th scope="row">
                                 {{ $loop->iteration }}

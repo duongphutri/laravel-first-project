@@ -22,36 +22,51 @@
                         @else
                             <option value="0">NULL</option>
                         @endif
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">image:</label>
-                            <input type="file" accept="image/*" class="form-control" name="image" placeholder="Enter image"
-                                value="{{ old('image') }}">
-                        </div>
-                        {{-- <div class="form-group">
+                    </select>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">image:</label>
+                        <input type="file" accept="image/*" class="form-control" name="image" placeholder="Enter image"
+                            value="{{ old('image') }}">
+                    </div>
+                    <label class="control-label" for="Company">product</label>
+                    <select class="form-control" name="id_category">
+                        @if (count($categories))
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}"
+                                    {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        @else
+                            <option value="0">NULL</option>
+                        @endif
+                    </select>
+
+                    {{-- <div class="form-group">
                             <label for="exampleInputEmail1">soluong</label>
                             <input type="text" value="{{ old('soluong') }}" class="form-control" name="soluong"
                                 id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter soluong">
                         </div> --}}
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">gia</label>
-                            <input type="text" value="{{ old('gia') }}" class="form-control" name="gia"
-                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter gia">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">is_sale</label>
-                            <input type="text" value="{{ old('is_sale') }}" class="form-control" name="is_sale"
-                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter is_sale">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">is_hot</label>
-                            <input type="text" value="{{ old('is_hot') }}" class="form-control" name="is_hot"
-                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter is_hot">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">is_new</label>
-                            <input type="text" value="{{ old('is_new') }}" class="form-control" name="is_new"
-                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter is_new">
-                        </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">gia</label>
+                        <input type="text" value="{{ old('gia') }}" class="form-control" name="gia"
+                            id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter gia">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">is_sale</label>
+                        <input type="text" value="{{ old('is_sale') }}" class="form-control" name="is_sale"
+                            id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter is_sale">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">is_hot</label>
+                        <input type="text" value="{{ old('is_hot') }}" class="form-control" name="is_hot"
+                            id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter is_hot">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">is_new</label>
+                        <input type="text" value="{{ old('is_new') }}" class="form-control" name="is_new"
+                            id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter is_new">
+                    </div>
                     </select>
                 </div>
 

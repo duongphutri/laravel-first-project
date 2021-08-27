@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Mail\NewMailtrap;
 use App\Models\categories;
+use App\Models\donhang;
 use App\Models\images;
 use App\Models\mathang;
+use App\Models\Product;
+use App\Models\thuonghieu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -28,8 +31,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-
-
         if ($request->has('category')) {
             $mathang = categories::find($request->category)->products;
         } else {
@@ -41,15 +42,27 @@ class HomeController extends Controller
     {
         return view('pages.contact');
     }
-    public function product()
+    public function product(Request $request)
     {
-        $mathang = mathang::all();
+        if (!empty($request->input('product'))) {
+            $mathang = product::find($request->input('product'))->mathangs;
+        }
+        if (!empty($request->input('category'))) {
+            $mathang = categories::find($request->input('category'))->mathangs;
+        } else {
+
+            $mathang = mathang::all();
+        }
 
         return view('pages.product', ['mathangs' => $mathang]);
     }
-    public function productdetails()
+    public function mathangshow(mathang $mathang)
     {
-        return view('pages.productdetails');
+        return view('pages.productdetails', ['mathang' => $mathang]);
+    }
+    public function productdetails(mathang $mathang)
+    {
+        return view('pages.productdetails', ['mathang' => $mathang]);
     }
     public function blog()
     {
@@ -61,7 +74,10 @@ class HomeController extends Controller
     }
     public function cart()
     {
-        return view('pages.cart');
+        $donhang = donhang::all();
+        // dd($donhang->all());
+
+        return view('pages.cart', ['donhangs' => $donhang]);
     }
     public function checkout()
     {

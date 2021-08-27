@@ -97,4 +97,14 @@ class ChucnangUserController extends Controller
 
         return redirect()->route('chucnang.index');
     }
+    public function destroyAllchucnanguser(Request $request)
+    {
+        $listProduct = $request->deleteProduct;
+
+        foreach ($listProduct as $productId) {
+            Chucnang_User::find($productId)->delete();
+        }
+
+        return redirect()->route('admin.chucnang.index');
+    }
 }

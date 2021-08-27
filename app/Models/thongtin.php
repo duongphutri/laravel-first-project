@@ -14,5 +14,6 @@ class thongtin extends Model
         'dungluong',
         'mau',
         'soluong',
+        'chitiet',
     ];
 }

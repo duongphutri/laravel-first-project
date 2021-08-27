@@ -42,7 +42,7 @@
                                             </th>
                                             <td>{{ $mathang->name }}</td>
                                             <td>{{ $mathang->soluong }}</td>
-                                            <td>{{ $mathang->products ? $mathang->products->category->name : 'NULL' }}
+                                            <td>{{ $mathang->category ? $mathang->category->name : 'NULL' }}
                                             </td>
                                             <td>{{ $mathang->products ? $mathang->products->name : 'NULL' }}</td>
                                             <td>

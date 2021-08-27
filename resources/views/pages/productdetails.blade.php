@@ -1,8 +1,5 @@
 @extends('layout')
 @section('content')
-
-
-
     <section>
         <div class="container">
             <div class="row">
@@ -153,13 +150,15 @@
                         <!--/shipping-->
 
                     </div> --}}
+                    {{-- {{dd($mathang->all())}} --}}
                 </div>
                 <div class="col-sm-9 padding-right">
                     <div class="product-details">
                         <!--product-details-->
                         <div class="col-sm-5">
                             <div class="view-product">
-                                <img src="{{ asset('backend/images/product-details/1.jpg') }}" alt="" />
+                                <img src="/storage/images/{{ isset($mathang->image_mathang) ? $mathang->image_mathang->file_nm : null }}"
+                                    alt="" />
                                 <h3>ZOOM</h3>
                             </div>
                             <div id="similar-product" class="carousel slide" data-ride="carousel">
@@ -203,26 +202,24 @@
                             </div>
 
                         </div>
+
                         <div class="col-sm-7">
                             <div class="product-information">
                                 <!--/product-information-->
-                                <img src="{{ asset('backend/images/product-details/new.jpg') }}" class="newarrival"
-                                    alt="" />
-                                <h2>Anne Klein Sleeveless Colorblock Scuba</h2>
+                                <img src="" class="newarrival" alt="" />
+                                <h2>{{ $mathang->name }}</h2>
                                 <p>Web ID: 1089772</p>
-                                <img src="{{ asset('backend/images/product-details/rating.png') }}" alt="" />
+                                <img src="" alt="" />
                                 <span>
-                                    <span>US $59</span>
+                                    <span>{{ number_format($mathang->gia) }}</span>
                                     <label>Quantity:</label>
-                                    <input type="text" value="3" />
-                                    <button type="button" class="btn btn-fefault cart">
-                                        <i class="fa fa-shopping-cart"></i>
-                                        Add to cart
-                                    </button>
+                                    <input type="text" value="{{ $mathang->soluong }}" />
+                                    <button id="addtocart{{ $mathang->id }}" class="btn btn-default add-to-cart"><i
+                                            class="fa fa-shopping-cart"></i>Addtocart</button>
                                 </span>
                                 <p><b>Availability:</b> In Stock</p>
                                 <p><b>Condition:</b> New</p>
-                                <p><b>Brand:</b> E-SHOPPER</p>
+                                <p><b>Brand:</b> Phone-SHOPPER</p>
                                 <a href=""><img src="{{ asset('backend/images/product-details/share.png') }}"
                                         class="share img-responsive" alt="" /></a>
                             </div>
@@ -312,48 +309,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}""images/home/gallery3.jpg"
-                                                    alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i
-                                                        class="fa fa-shopping-cart"></i>Add to cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}""images/home/gallery2.jpg"
-                                                    alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i
-                                                        class="fa fa-shopping-cart"></i>Add to cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}""images/home/gallery4.jpg"
-                                                    alt="" />
-                                                <h2>$56</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <button type="button" class="btn btn-default add-to-cart"><i
-                                                        class="fa fa-shopping-cart"></i>Add to cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
                             <div class="tab-pane fade" id="tag">
@@ -361,8 +316,7 @@
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}""images/home/gallery1.jpg"
-                                                    alt="" />
+                                                <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}" alt="" />
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <button type="button" class="btn btn-default add-to-cart"><i
@@ -375,8 +329,7 @@
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}""images/home/gallery2.jpg"
-                                                    alt="" />
+                                                <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}" alt="" />
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <button type="button" class="btn btn-default add-to-cart"><i
@@ -389,8 +342,7 @@
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}""images/home/gallery3.jpg"
-                                                    alt="" />
+                                                <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}" alt="" />
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <button type="button" class="btn btn-default add-to-cart"><i
@@ -403,8 +355,7 @@
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo text-center">
-                                                <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}""images/home/gallery4.jpg"
-                                                    alt="" />
+                                                <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}" alt="" />
                                                 <h2>$56</h2>
                                                 <p>Easy Polo Black Edition</p>
                                                 <button type="button" class="btn btn-default add-to-cart"><i
@@ -435,9 +386,7 @@
                                             <input type="email" placeholder="Email Address" />
                                         </span>
                                         <textarea name=""></textarea>
-                                        <b>Rating: </b> <img
-                                            src="{{ asset('backend/js/jquery2.0.3.min.js') }}""images/product-details/rating.png"
-                                            alt="" />
+                                        <b>Rating: </b> <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}" alt="" />
                                         <button type="button" class="btn btn-default pull-right">
                                             Submit
                                         </button>
@@ -451,97 +400,62 @@
 
                     <div class="recommended_items">
                         <!--recommended_items-->
-                        <h2 class="title text-center">recommended items</h2>
+                        <h2 class="title text-center">New</h2>
 
                         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}""images/home/recommend1.jpg"
-                                                        alt="" />
-                                                    <h2>$56</h2>
-                                                    <p>Easy Polo Black Edition</p>
-                                                    <button type="button" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</button>
+                                    @if ($mathang->is_new)
+                                        <div class="col-sm-4">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="/storage/images/{{ isset($mathang->image_mathang) ? $mathang->image_mathang->file_nm : null }}"
+                                                            alt="" />
+                                                        <h2>{{ $mathang->gia }}</h2>
+                                                        <p>{{ $mathang->name }}</p>
+                                                        <button id="addtocart{{ $mathang->id }}"
+                                                            class="btn btn-default add-to-cart"><i
+                                                                class="fa fa-shopping-cart"></i>Addtocart</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}""images/home/recommend2.jpg"
-                                                        alt="" />
-                                                    <h2>$56</h2>
-                                                    <p>Easy Polo Black Edition</p>
-                                                    <button type="button" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}""images/home/recommend3.jpg"
-                                                        alt="" />
-                                                    <h2>$56</h2>
-                                                    <p>Easy Polo Black Edition</p>
-                                                    <button type="button" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endif
                                 </div>
-                                <div class="item">
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}""images/home/recommend1.jpg"
-                                                        alt="" />
-                                                    <h2>$56</h2>
-                                                    <p>Easy Polo Black Edition</p>
-                                                    <button type="button" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</button>
+                            </div>
+                            <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="recommended_items">
+                        <!--recommended_items-->
+                        <h2 class="title text-center">Hot</h2>
+
+                        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    @if ($mathang->is_hot)
+                                        <div class="col-sm-4">
+                                            <div class="product-image-wrapper">
+                                                <div class="single-products">
+                                                    <div class="productinfo text-center">
+                                                        <img src="/storage/images/{{ isset($mathang->image_mathang) ? $mathang->image_mathang->file_nm : null }}"
+                                                            alt="" />
+                                                        <h2>{{ $mathang->gia }}</h2>
+                                                        <p>{{ $mathang->name }}</p>
+                                                        <button id="addtocart{{ $mathang->id }}"
+                                                            class="btn btn-default add-to-cart"><i
+                                                                class="fa fa-shopping-cart"></i>Addtocart</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}""images/home/recommend2.jpg"
-                                                        alt="" />
-                                                    <h2>$56</h2>
-                                                    <p>Easy Polo Black Edition</p>
-                                                    <button type="button" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <img src="{{ asset('backend/js/jquery2.0.3.min.js') }}""images/home/recommend3.jpg"
-                                                        alt="" />
-                                                    <h2>$56</h2>
-                                                    <p>Easy Polo Black Edition</p>
-                                                    <button type="button" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Add to cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endif
                                 </div>
                             </div>
                             <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">

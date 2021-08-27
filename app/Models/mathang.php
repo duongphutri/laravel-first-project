@@ -11,7 +11,7 @@ class mathang extends Model
 
     protected $fillable = [
         'id_product',
-        // 'id_category',
+        'id_category',
         'name',
         'soluong',
         'gia',
@@ -27,5 +27,9 @@ class mathang extends Model
     public function products()
     {
         return $this->hasOne(Product::class, 'id', 'id_product');
+    }
+    public function category()
+    {
+        return $this->hasOne(categories::class, 'id', 'id_category');
     }
 }

@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     <label class="control-label" for="Company">Sản Phẩm</label>
-                    <select class="form-control" name="category_id">
+                    <select class="form-control" name="id_product">
                         @if (count($products))
                             @foreach ($products as $product)
                                 <option value="{{ $product->id }}">{{ $product->name }}</option>
@@ -43,9 +43,25 @@
                         id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter soluong">
                 </div>
                 <div class="form-group">
+
+                    <label class="control-label" for="Company">chungloai</label>
+                    <select class="form-control" name="id_category">
+                        @if (count($categories))
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}"
+                                    {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        @else
+                            <option value="0">NULL</option>
+                        @endif
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="exampleInputEmail1">gia</label>
-                    <input type="text" class="form-control" value="{{ $mathang->gia }}" name="gia" id="exampleInputEmail1"
-                        aria-describedby="emailHelp" placeholder="Enter gia">
+                    <input type="text" class="form-control" value="{{ $mathang->gia }}" name="gia"
+                        id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter gia">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">is_sale</label>

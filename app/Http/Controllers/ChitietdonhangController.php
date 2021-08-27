@@ -30,7 +30,6 @@ class ChitietdonhangController extends Controller
     {
         $donhangs = donhang::all();
         $mathangs = mathang::all();
-
         return view('backend.chitietdonhang.create', [
             'donhangs' => $donhangs,
             'mathangs' => $mathangs,
@@ -46,7 +45,6 @@ class ChitietdonhangController extends Controller
     public function store(Request $request)
     {
         chitietdonhang::create($request->except('_token'));
-
         return redirect()->route('admin.chitietdonhang.index');
     }
 
@@ -71,7 +69,7 @@ class ChitietdonhangController extends Controller
     {
         $donhangs = donhang::all();
         $mathangs = mathang::all();
-        return view('chitietdonhang.edit', [
+        return view('backend.chitietdonhang.edit', [
             'chitietdonhang' => $chitietdonhang,
             'donhangs' => $donhangs,
             'mathangs' => $mathangs,

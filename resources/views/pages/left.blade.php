@@ -7,7 +7,7 @@
                 <!--category-productsr-->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4 class="panel-title"><a href="{{ route('category.filter',['category'=>$category->id]) }}">{{{ $category->name}}}</a></h4>
+                        <h4 class="panel-title"><a href="{{ route('product',['category'=>$category->id]) }}">{{{ $category->name}}}</a></h4>
                     </div>
                 </div>
                 @endforeach
@@ -20,7 +20,7 @@
                 <div class="brands-name">
                     @foreach ($data_product as $product)
                     <ul class="nav nav-pills nav-stacked">
-                        <li><a href=""> <span class="pull-right">({{count($product->mathangs)}})</span>{{$product->name}}</a></li>
+                        <li><a href="{{ route('product',['product'=>$product->id]) }}"> <span class="pull-right">({{count($product->mathangs)}})</span>{{$product->name}}</a></li>
                     </ul>
                     @endforeach
                 </div>

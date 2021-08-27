@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoremathangRequest;
 use App\Http\Requests\UpdatemathangRequest;
+use App\Models\categories;
 use App\Models\images;
 use App\Models\mathang;
 use App\Models\Product;
@@ -33,8 +34,12 @@ class mathangController extends Controller
     public function create()
     {
         $products = product::all();
+        $category = categories::all();
 
-        return view('backend.mathang.create', ['products' => $products]);
+        return view('backend.mathang.create', [
+            'products' => $products,
+            'categories' => $category,
+        ]);
     }
 
     /**
@@ -99,9 +104,11 @@ class mathangController extends Controller
     public function edit(mathang $mathang)
     {
         $product = Product::all();
+        $category = categories::all();
         return view('backend.mathang.edit', [
             'mathang' => $mathang,
             'products' => $product,
+            'categories' => $category,
         ]);
     }
 

@@ -11,6 +11,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+Route::get('/login', function () {
+    return  view('auth.login');
+})->name('admin.login.get');
+
+Route::get('/register', function () {
+    return  view('auth.register');
+})->name('register');
+/////////
+
 Route::post('/mail', [HomeController::class, 'postSendMail'])->name('sendmail');
 
 /////
@@ -32,11 +44,12 @@ Route::post('/search/mathang', [HomeController::class, 'searchmathang'])->name('
 Route::post('/addtocart', [HomeController::class, 'addtocart'])->name('addtocart');
 
 ////Frontend
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/{category}', [HomeController::class, 'index'])->name('category.filter');
+Route::get('/', [HomeController::class, 'index'])->name('trangchu');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/product', [HomeController::class, 'product'])->name('product');
 Route::get('/productdetails', [HomeController::class, 'productdetails'])->name('productdetails');
+Route::get('/productdetails/{mathang}', [HomeController::class, 'mathangshow'])->name('mathangshow');
+
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/blogsingle', [HomeController::class, 'blogsingle'])->name('blogsingle');
 Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
@@ -50,7 +63,7 @@ Route::group(
     [
         'as' => 'admin.',
         'prefix' => 'admin',
-        // 'middleware' => "auth", "checkuser",
+        'middleware' => "auth", "checkuser",
     ],
     function () {
         Route::get('/ad', [AdminController::class, 'index'])->name('ad');
