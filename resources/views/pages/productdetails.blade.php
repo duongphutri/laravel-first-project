@@ -373,13 +373,11 @@
                                         <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
                                         <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
                                     </ul>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud
-                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure
-                                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                        pariatur.</p>
+                                    <div class="fb-comment-embed"
+                                        data-href="https://www.facebook.com/permalink.php?story_fbid=345768805987472&amp;id=182245249006496&amp;comment_id=947602459137434"
+                                        data-width="560" data-include-parent="false"></div>
                                     <p><b>Write Your Review</b></p>
-
+                                    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
                                     <form action="#">
                                         <span>
                                             <input type="text" placeholder="Your Name" />
@@ -412,7 +410,7 @@
                                                     <div class="productinfo text-center">
                                                         <img src="/storage/images/{{ isset($mathang->image_mathang) ? $mathang->image_mathang->file_nm : null }}"
                                                             alt="" />
-                                                        <h2>{{ $mathang->gia }}</h2>
+                                                        <h2>{{ number_format($mathang->gia) }}</h2>
                                                         <p>{{ $mathang->name }}</p>
                                                         <button id="addtocart{{ $mathang->id }}"
                                                             class="btn btn-default add-to-cart"><i
@@ -446,7 +444,8 @@
                                                     <div class="productinfo text-center">
                                                         <img src="/storage/images/{{ isset($mathang->image_mathang) ? $mathang->image_mathang->file_nm : null }}"
                                                             alt="" />
-                                                        <h2>{{ $mathang->gia }}</h2>
+                                                            
+                                                        <h2>{{ number_format($mathang->gia) }}</h2>
                                                         <p>{{ $mathang->name }}</p>
                                                         <button id="addtocart{{ $mathang->id }}"
                                                             class="btn btn-default add-to-cart"><i

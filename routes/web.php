@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BaogiaController;
+use App\Http\Controllers\BaogiaExportExcelController;
+use App\Http\Controllers\BaogiaImportExcelController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ChitietdonhangController;
 use App\Http\Controllers\ChucnangUserController;
@@ -35,7 +38,22 @@ Route::get('/register', function () {
     return  view('auth.register');
 })->name('register');
 /////////
+route::group(
+    [
+        'as' => 'excel.',
+        'prefix' => 'excel',
+        // 'middleware' => 'checkuser',
+    ],
 
+    function () {
+        Route::get('/excel', [BaogiaImportExcelController::class, 'index'])->name('excel');
+        Route::post('/excel', [BaogiaImportExcelController::class, 'store'])->name('excelimport');
+    }
+);
+
+
+Route::get('/export', [BaogiaExportExcelController::class, 'export'])->name('exportexcel');
+//////////////
 Route::post('/mail', [HomeController::class, 'postSendMail'])->name('sendmail');
 
 /////
@@ -240,7 +258,27 @@ Route::group(
                 Route::post('destroy/all', [userController::class, 'destroyAlluser'])->name('destroyAlluser');
             }
         );
+        Route::group(
+            [
+                'as' => 'baogia.',
+                'prefix' => 'baogia',
+
+            ],
+            function () {
+                Route::get('/', [BaogiaController::class, 'index'])->name('index');
+                Route::get('show/{baogia}', [BaogiaController::class, 'show'])->name('show');
+
+                Route::get('create', [BaogiaController::class, 'create'])->name('create');
+                Route::post('store', [BaogiaController::class, 'store'])->name('store');
+
+                Route::get('edit/{baogia}', [BaogiaController::class, 'edit'])->name('edit');
+                Route::post('update/{baogia}', [BaogiaController::class, 'update'])->name('update');
+
+                Route::get('destroy/{baogia}', [BaogiaController::class, 'destroy'])->name('destroy');
+            }
+        );
     }
+
 
 );
 Route::group(
@@ -263,6 +301,7 @@ Route::group(
 
         Route::post('destroy/all', [chucnanguserController::class, 'destroyAllchucnanguser'])->name('destroyAllchucnang');
     }
+
 );
 
 Auth::routes();

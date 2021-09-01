@@ -16,8 +16,9 @@
                                     <th scope="col">*</th>
                                     <th scope="col">id</th>
                                     <th scope="col">donhang</th>
-                                    <th scope="col">ngaymua</th>
+                                    <th scope="col">nguoimua</th>
                                     <th scope="col">Tên Mặt Hàng</th>
+                                    <th scope="col">ngaymua</th>
                                     <th scope="col">soluong</th>
                                     <th scope="col">gia</th>
                                     <th scope="col">thanhtien</th>
@@ -37,15 +38,16 @@
                                                 {{ $chitietdonhang->id }}
                                             </th>
                                             <td>{{ $chitietdonhang->id_donhang }}</td>
+                                            <td>{{ $chitietdonhang->donhang->nguoimua }}</td>
                                             <td>{{ $chitietdonhang->donhang ? $chitietdonhang->donhang->mathangs->name : 'NULL' }}
                                             </td>
                                             <td>{{ $chitietdonhang->donhang ? $chitietdonhang->donhang->ngaymua : 'NULL' }}
                                             </td>
                                             <td>{{ $chitietdonhang->donhang ? $chitietdonhang->donhang->mathangs->soluong : 'NULL' }}
                                             </td>
-                                            <td>{{ $chitietdonhang->donhang ? $chitietdonhang->donhang->gia : 'NULL' }}
+                                            <td>{{ number_format($chitietdonhang->donhang ? $chitietdonhang->donhang->mathangs->gia : 'NULL') }}
                                             </td>
-                                            <td>{{ $chitietdonhang->thanhtien }}</td>
+                                            <td>{{ number_format($chitietdonhang->thanhtien) }}</td>
                                             <td>
                                                 <a
                                                     href="{{ route('admin.chitietdonhang.show', ['chitietdonhang' => $chitietdonhang]) }}">view</a>

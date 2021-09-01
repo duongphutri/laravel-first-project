@@ -17,6 +17,7 @@
                                     <th scope="col">mathang</th>
                                     <th scope="col">nguoimua</th>
                                     <th scope="col">ngaymua</th>
+                                    <th scope="col">soluong</th>
                                     <th scope="col">tongtien</th>
                                     <th scope="col">trangthai</th>
                                     <th scope="col">image</th>
@@ -38,7 +39,9 @@
                                             <td>{{ $donhang->mathangs ? $donhang->mathangs->name : 'NULL' }}</td>
                                             <td>{{ $donhang->nguoimua }}</td>
                                             <td>{{ $donhang->ngaymua }}</td>
-                                            <td>  {{number_format($donhang->mathangs->soluong * $donhang->mathangs->gia)}}</td>
+                                            <td>{{ $donhang->mathangs->soluong }}</td>
+                                            <td> {{ number_format($donhang->mathangs->soluong * $donhang->mathangs->gia) }}
+                                            </td>
                                             <td>{{ $donhang->trangthai }}</td>
                                             <td>
                                                 <img style="width: 20%"

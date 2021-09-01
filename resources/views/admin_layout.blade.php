@@ -131,6 +131,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 {{-- <li><a href="{{ route('admin.chitietdonhang.index') }}">Chi Tiết Đơn Hàng</a></li> --}}
                             </ul>
                         </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-book"></i>
+                                <span>Danh Mục excelbaogia</span>
+                            </a>
+                            <ul class="sub">
+
+                                <li><a href="{{ route('admin.baogia.index') }}">Báo Giá Excel</a></li>
+                                {{-- <li><a href="{{ route('admin.chitietdonhang.index') }}">Chi Tiết Đơn Hàng</a></li> --}}
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <!-- sidebar menu end-->

@@ -10,6 +10,9 @@
                                 <div class="col-sm-12">
                                     <h2 class="title text-center">Contact <strong>Us</strong></h2>
                                     <div id="gmap" class="contact-map">
+                                        <iframe width="750px" height="450px"
+                                            src="https://www.google.com/maps/d/embed?mid=1V3_GSMdV_DnprGm2GstegQ2T-N_b3fSw"
+                                            width="640" height="480"></iframe>
                                     </div>
                                 </div>
                             </div>
