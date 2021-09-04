@@ -16,9 +16,15 @@ class ChitietdonhangController extends Controller
      */
     public function index()
     {
+        $donhang = donhang::all();
+        $mathang = mathang::all();
         $chitietdonhang = chitietdonhang::paginate(10);
 
-        return view('backend.chitietdonhang.index', ['chitietdonhangs' => $chitietdonhang]);
+        return view('backend.chitietdonhang.index', [
+            'chitietdonhangs' => $chitietdonhang,
+            'donhang' => $donhang,
+            'mathang' => $mathang,
+        ]);
     }
 
     /**

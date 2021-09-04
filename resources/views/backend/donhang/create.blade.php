@@ -10,6 +10,16 @@
                         id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter nguoimua">
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputEmail1">sodienthoai</label>
+                    <input type="text" value="{{ old('sodienthoai') }}" class="form-control" name="sodienthoai"
+                        id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter sodienthoai">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">diachi</label>
+                    <input type="text" value="{{ old('diachi') }}" class="form-control" name="diachi"
+                        id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter diachi">
+                </div>
+                <div class="form-group">
                     <label class="control-label" for="Company">mathang</label>
                     <select class="form-control" name="id_product">
                         @if (count($mathangs))

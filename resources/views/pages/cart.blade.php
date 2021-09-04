@@ -22,36 +22,44 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- {{dd($donhangs->all())}} --}}
-                        @foreach ($donhangs as $donhang)
+                        {{-- {{dd(session()->get('cart'))}} --}}
+                        <?php
+                        $cart = session()->get('cart');
+                        $tong = 0;
+                        ?>
+
+                        @foreach ($cart as $value)
+                            <?php $tong += $value['gia'] * $value['soluong']; ?>
                             <tr>
                                 <td class="cart_product">
-                                    <a href=""><img src="images/cart/one.png" alt=""></a>
+                                    <a href=""><img src="images/cart/one.png" alt=""> {{ $value['name'] }}</a>
                                 </td>
                                 <td class="cart_description">
-                                    <h4><a href="">{{ $donhang->mathangs ? $donhang->mathangs->name : 'NULL' }}</a></h4>
-                                    <p>{{ $donhang->nguoimua }}</p>
+                                    <h4><a href=""></a></h4>
+                                    <p></p>
                                 </td>
                                 <td class="cart_price">
-                                    <p>{{ number_format($donhang->mathangs->gia) }}</p>
+                                    <p>{{ number_format($value['gia']) }}</p>
                                 </td>
                                 <td class="cart_quantity">
                                     <div class="cart_quantity_button">
                                         <a class="cart_quantity_up" href=""> + </a>
-                                        <input class="cart_quantity_input" type="text" name="quantity"
-                                            value="{{ $donhang->mathangs->soluong }}" autocomplete="off" size="2">
+                                        <input class="cart_quantity_input" type="text" name="quantity" value="1"
+                                            autocomplete="off" size="2">
                                         <a class="cart_quantity_down" href=""> - </a>
                                     </div>
                                 </td>
                                 <td class="cart_total">
                                     <p class="cart_total_price">
-                                        {{ number_format($donhang->mathangs->soluong * $donhang->mathangs->gia) }}</p>
+                                        {{ number_format($value['gia'] * $value['soluong'] ?? 'NULL') }}
+                                    </p>
                                 </td>
                                 <td class="cart_delete">
                                     <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
                                 </td>
                             </tr>
                         @endforeach
+
                     </tbody>
                 </table>
             </div>
@@ -68,22 +76,38 @@
             </div>
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="chose_area">
-                        <ul class="user_option">
-                            <li>
-                                <input type="checkbox">
-                                <label>Use Coupon Code</label>
-                            </li>
-                            <li>
-                                <input type="checkbox">
-                                <label>Use Gift Voucher</label>
-                            </li>
-                            <li>
-                                <input type="checkbox">
-                                <label>Estimate Shipping & Taxes</label>
-                            </li>
-                        </ul>
-                        <ul class="user_info">
+
+                    <form action="{{ route('admin.donhang.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">nguoimua</label>
+                            <input type="text" value="{{ old('nguoimua') }}" class="form-control" name="nguoimua"
+                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter nguoimua">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">sodienthoai</label>
+                            <input type="text" value="{{ old('sodienthoai') }}" class="form-control" name="sodienthoai"
+                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter sodienthoai">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">diachi</label>
+                            <input type="text" value="{{ old('diachi') }}" class="form-control" name="diachi"
+                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter diachi">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">tongtien</label>
+                            <input type="text" value="{{ $tong }}" class="form-control" name="tongtien"
+                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter tongtien">
+                        </div>
+
+                        <input type="hidden" value="đã đặt hàng" class="form-control" name="trangthai"
+                            id="exampleInputEmail1">
+                        <input type="text" value="{{ date('y-m-d') }}" class="form-control" name="ngaymua"
+                            id="exampleInputEmail1">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                    </form>
+                    {{-- <ul class="user_info">
                             <li class="single_field">
                                 <label>Country:</label>
                                 <select>
@@ -116,24 +140,23 @@
                                 <label>Zip Code:</label>
                                 <input type="text">
                             </li>
-                        </ul>
-                        <a class="btn btn-default update" href="">Get Quotes</a>
-                        <a class="btn btn-default check_out" href="">Continue</a>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="total_area">
-                        <ul>
-                            <li>Cart Sub Total <span>$59</span></li>
-                            <li>Eco Tax <span>$2</span></li>
-                            <li>Shipping Cost <span>Free</span></li>
-                            <li>Total <span>$61</span></li>
-                        </ul>
-                        <a class="btn btn-default update" href="">Update</a>
-                        <a class="btn btn-default check_out" href="">Check Out</a>
-                    </div>
+                        </ul> --}}
+
                 </div>
             </div>
+            <div class="col-sm-6">
+                <div class="total_area">
+                    <ul>
+                        <li>Cart Sub Total <span>$59</span></li>
+                        <li>Eco Tax <span>$2</span></li>
+                        <li>Shipping Cost <span>Free</span></li>
+                        <li>Total <span>$61</span></li>
+                    </ul>
+                    <a class="btn btn-default update" href="">Update</a>
+                    <a class="btn btn-default check_out" href="">Check Out</a>
+                </div>
+            </div>
+        </div>
         </div>
     </section>
     <!--/#do_action-->

@@ -42,10 +42,8 @@
                         <div class="shopper-info">
                             <p>Shopper Information</p>
                             <form>
-                                <input type="text" placeholder="Display Name">
                                 <input type="text" placeholder="User Name">
                                 <input type="password" placeholder="Password">
-                                <input type="password" placeholder="Confirm password">
                             </form>
                             <a class="btn btn-primary" href="">Get Quotes</a>
                             <a class="btn btn-primary" href="">Continue</a>
@@ -53,58 +51,34 @@
                     </div>
                     <div class="col-sm-5 clearfix">
                         <div class="bill-to">
-                            <p>Bill To</p>
-                            <div class="form-one">
-                                <form>
-                                    <input type="text" placeholder="Company Name">
-                                    <input type="text" placeholder="Email*">
-                                    <input type="text" placeholder="Title">
-                                    <input type="text" placeholder="First Name *">
-                                    <input type="text" placeholder="Middle Name">
-                                    <input type="text" placeholder="Last Name *">
-                                    <input type="text" placeholder="Address 1 *">
-                                    <input type="text" placeholder="Address 2">
-                                </form>
-                            </div>
                             <div class="form-two">
-                                <form>
-                                    <input type="text" placeholder="Zip / Postal Code *">
-                                    <select>
-                                        <option>-- Country --</option>
-                                        <option>United States</option>
-                                        <option>Bangladesh</option>
-                                        <option>UK</option>
-                                        <option>India</option>
-                                        <option>Pakistan</option>
-                                        <option>Ucrane</option>
-                                        <option>Canada</option>
-                                        <option>Dubai</option>
-                                    </select>
-                                    <select>
-                                        <option>-- State / Province / Region --</option>
-                                        <option>United States</option>
-                                        <option>Bangladesh</option>
-                                        <option>UK</option>
-                                        <option>India</option>
-                                        <option>Pakistan</option>
-                                        <option>Ucrane</option>
-                                        <option>Canada</option>
-                                        <option>Dubai</option>
-                                    </select>
-                                    <input type="password" placeholder="Confirm password">
-                                    <input type="text" placeholder="Phone *">
-                                    <input type="text" placeholder="Mobile Phone">
-                                    <input type="text" placeholder="Fax">
+                                <form action="{{ route('admin.donhang.store') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    {{-- <input type="text" placeholder="Zip / Postal Code *"> --}}
+                                    {{-- <input type="password" placeholder="Confirm password"> --}}
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">nguoimua</label>
+                                        <input type="text" value="{{ old('nguoimua') }}" class="form-control"
+                                            name="nguoimua" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                            placeholder="Enter nguoimua">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">diachi:</label>
+                                        <input type="text" value="{{ old('diachi') }}" class="form-control" name="diachi"
+                                            id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter diachi">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">sodienthoai:</label>
+                                        <input type="text" value="{{ old('sodienthoai') }}" class="form-control"
+                                            name="sodienthoai" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                            placeholder="Enter sodienthoai">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="order-message">
-                            <p>Shipping Order</p>
-                            <textarea name="message" placeholder="Notes about your order, Special Notes for Delivery"
-                                rows="16"></textarea>
-                            <label><input type="checkbox"> Shipping to bill address</label>
                         </div>
                     </div>
                 </div>

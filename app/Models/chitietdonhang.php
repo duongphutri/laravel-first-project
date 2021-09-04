@@ -21,4 +21,8 @@ class chitietdonhang extends Model
     {
         return $this->hasOne(donhang::class, 'id', 'id_donhang');
     }
+    public function mathang()
+    {
+        return $this->hasOne(mathang::class, 'id', 'id_mathang');
+    }
 }

@@ -16,9 +16,7 @@
                                     <th scope="col">*</th>
                                     <th scope="col">id</th>
                                     <th scope="col">donhang</th>
-                                    <th scope="col">nguoimua</th>
-                                    <th scope="col">Tên Mặt Hàng</th>
-                                    <th scope="col">ngaymua</th>
+                                    <th scope="col">mathang</th>
                                     <th scope="col">soluong</th>
                                     <th scope="col">gia</th>
                                     <th scope="col">thanhtien</th>
@@ -37,15 +35,13 @@
                                             <th scope="row">
                                                 {{ $chitietdonhang->id }}
                                             </th>
-                                            <td>{{ $chitietdonhang->id_donhang }}</td>
-                                            <td>{{ $chitietdonhang->donhang->nguoimua }}</td>
-                                            <td>{{ $chitietdonhang->donhang ? $chitietdonhang->donhang->mathangs->name : 'NULL' }}
+                                            <td>{{ $chitietdonhang->donhang ? $chitietdonhang->donhang->nguoimua : 'NULL' }}
                                             </td>
-                                            <td>{{ $chitietdonhang->donhang ? $chitietdonhang->donhang->ngaymua : 'NULL' }}
+                                            <td>{{ $chitietdonhang->mathang ? $chitietdonhang->mathang->name : 'NULL' }}
                                             </td>
-                                            <td>{{ $chitietdonhang->donhang ? $chitietdonhang->donhang->mathangs->soluong : 'NULL' }}
+                                            <td>{{ $chitietdonhang->donhang->sodienthoai }}
                                             </td>
-                                            <td>{{ number_format($chitietdonhang->donhang ? $chitietdonhang->donhang->mathangs->gia : 'NULL') }}
+                                            <td>{{ $chitietdonhang->donhang->diachi }}
                                             </td>
                                             <td>{{ number_format($chitietdonhang->thanhtien) }}</td>
                                             <td>

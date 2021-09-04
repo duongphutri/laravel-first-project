@@ -11,6 +11,16 @@
                         id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter nguoimua">
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputEmail1">sodienthoai</label>
+                    <input type="text" class="form-control" value="{{ $donhang->sodienthoai }}" name="sodienthoai"
+                        id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter sodienthoai">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">diachi</label>
+                    <input type="text" class="form-control" value="{{ $donhang->diachi }}" name="diachi"
+                        id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter diachi">
+                </div>
+                <div class="form-group">
                     <label for="exampleInputEmail1">ngaymua</label>
                     <input type="date" class="form-control" value="{{ $donhang->ngaymua }}" name="ngaymua"
                         id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter ngaymua">

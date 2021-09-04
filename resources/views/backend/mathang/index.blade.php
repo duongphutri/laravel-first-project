@@ -16,7 +16,7 @@
                                     <th scope="col">*</th>
                                     <th scope="col">id</th>
                                     <th scope="col">name</th>
-                                    <th scope="col">soluong</th>
+                                    {{-- <th scope="col">soluong</th> --}}
                                     <th scope="col">Chủng Loại</th>
                                     <th scope="col">Sản Phẩm</th>
                                     <th scope="col">image</th>
@@ -41,7 +41,7 @@
                                                 {{ $mathang->id }}
                                             </th>
                                             <td>{{ $mathang->name }}</td>
-                                            <td>{{ $mathang->soluong }}</td>
+                                            {{-- <td>{{ $mathang->soluong }}</td> --}}
                                             <td>{{ $mathang->category ? $mathang->category->name : 'NULL' }}
                                             </td>
                                             <td>{{ $mathang->products ? $mathang->products->name : 'NULL' }}</td>

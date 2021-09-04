@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoredonhangRequest;
 use App\Http\Requests\UpdatedonhangRequest;
+use App\Models\chitietdonhang;
 use App\Models\donhang;
 use App\Models\images;
 use App\Models\mathang;
@@ -46,38 +47,60 @@ class donhangController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->except('_token');
-        $created = donhang::create($data);
+        $carts = session()->get('cart');
+        // foreach ($carts as $cart) {
+        //     dd($cart['idmathang']);
+        // }
 
-        if (isset($data['image'])) {
-            $image = $data['image'];
-            $extension      = $image->getClientOriginalExtension();
-            $fileNm         =  (string) \Str::uuid() . ".$extension";
-            $fileCd         =  (string) \Str::uuid();
-            $fileOrigin     =  $image->getClientOriginalName();
-            $createBy       = auth()->user()->id;
-            $iddonhang         = $created->id;
-            $object         = 'App\Models\donhang';
-            $order          = 99;
+        if (!empty($carts)) {
 
-            $imageData = [
-                'file_nm'           => $fileNm,
-                'file_cd'           => $fileCd,
-                'file_origin'       => $fileOrigin,
-                'imageable_id'      => $iddonhang,
-                'imageable_object'  => $object,
-                'size'              => $image->getSize(),
-                'file_type'         => $extension,
-                'created_by'        => $createBy,
-                'order'             => $order,
-            ];
+            $data = $request->except('_token');
+            $created = donhang::create($data);
+            $iddonhang = $created->id;
 
-            Storage::disk(config('filesystems.default'))->putFileAs("public/images", $image, $fileNm);
+            if (isset($data['image'])) {
+                $image = $data['image'];
+                $extension      = $image->getClientOriginalExtension();
+                $fileNm         =  (string) \Str::uuid() . ".$extension";
+                $fileCd         =  (string) \Str::uuid();
+                $fileOrigin     =  $image->getClientOriginalName();
+                $createBy       = auth()->user()->id;
+                $iddonhang         = $created->id;
+                $object         = 'App\Models\donhang';
+                $order          = 99;
 
-            images::create($imageData);
+                $imageData = [
+                    'file_nm'           => $fileNm,
+                    'file_cd'           => $fileCd,
+                    'file_origin'       => $fileOrigin,
+                    'imageable_id'      => $iddonhang,
+                    'imageable_object'  => $object,
+                    'size'              => $image->getSize(),
+                    'file_type'         => $extension,
+                    'created_by'        => $createBy,
+                    'order'             => $order,
+                ];
+
+                Storage::disk(config('filesystems.default'))->putFileAs("public/images", $image, $fileNm);
+
+                images::create($imageData);
+            }
+            $data['created_by'] = auth()->user()->id;
+            //chitietdonhang
+            foreach ($carts as $carts) {
+                chitietdonhang::create([
+                    'id_donhang' => $iddonhang,
+                    'id_mathang' => $carts['idmathang'],
+                    'soluong' => $carts['soluong'],
+                    'gia' => $carts['gia'],
+                    'thanhtien' => $carts['soluong'] * $carts['gia'],
+
+                ]);
+            }
+            unset($carts);
+            session()->put('cart');
         }
-        $data['created_by'] = auth()->user()->id;
-        return redirect()->route('admin.donhang.index');
+        return redirect()->view('pages.checkout');
     }
 
     /**

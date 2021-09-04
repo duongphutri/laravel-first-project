@@ -32,4 +32,8 @@ class mathang extends Model
     {
         return $this->hasOne(categories::class, 'id', 'id_category');
     }
+    public function chitietdonhang()
+    {
+        return $this->hasMany(chitietdonhang::class, 'id_mathang', 'id');
+    }
 }

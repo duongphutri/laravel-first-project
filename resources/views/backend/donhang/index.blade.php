@@ -14,13 +14,15 @@
                                 <tr>
                                     <th scope="col">*</th>
                                     <th scope="col">id</th>
-                                    <th scope="col">mathang</th>
+                                    {{-- <th scope="col">mathang</th> --}}
                                     <th scope="col">nguoimua</th>
+                                    <th scope="col">sodienthoai</th>
+                                    <th scope="col">diachi</th>
                                     <th scope="col">ngaymua</th>
-                                    <th scope="col">soluong</th>
-                                    <th scope="col">tongtien</th>
+                                    {{-- <th scope="col">soluong</th> --}}
+                                    {{-- <th scope="col">tongtien</th> --}}
                                     <th scope="col">trangthai</th>
-                                    <th scope="col">image</th>
+                                    {{-- <th scope="col">image</th> --}}
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -36,18 +38,20 @@
                                             <th scope="row">
                                                 {{ $donhang->id }}
                                             </th>
-                                            <td>{{ $donhang->mathangs ? $donhang->mathangs->name : 'NULL' }}</td>
+                                            {{-- <td>{{ $donhang->mathangs ? $donhang->mathangs->name : 'NULL' }}</td> --}}
                                             <td>{{ $donhang->nguoimua }}</td>
+                                            <td>{{ $donhang->sodienthoai }}</td>
+                                            <td>{{ $donhang->diachi }}</td>
                                             <td>{{ $donhang->ngaymua }}</td>
-                                            <td>{{ $donhang->mathangs->soluong }}</td>
-                                            <td> {{ number_format($donhang->mathangs->soluong * $donhang->mathangs->gia) }}
+                                            {{-- <td>{{ $donhang->mathangs->soluong }}</td> --}}
+                                            {{-- <td> {{ number_format($donhang->mathangs->soluong * $donhang->mathangs->gia) }} --}}
                                             </td>
                                             <td>{{ $donhang->trangthai }}</td>
-                                            <td>
+                                            {{-- <td>
                                                 <img style="width: 20%"
                                                     src="/storage/images/{{ isset($donhang->mathangs->image_mathang) ? $donhang->mathangs->image_mathang->file_nm : null }}  "
                                                     alt="">
-                                            </td>
+                                            </td> --}}
                                             <td>
                                                 <a
                                                     href="{{ route('admin.donhang.show', ['donhang' => $donhang]) }}">view</a>

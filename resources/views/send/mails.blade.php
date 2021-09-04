@@ -5,7 +5,7 @@ Thank you for choosing TriDP!
 mail:{{ $mail }}
 Click below to start working right now
 
-Subject:From {{ $country }}
+Subject:From {{ $subject }}
 
 Message: {{ $textMessage }}
 

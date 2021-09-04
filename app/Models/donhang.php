@@ -10,8 +10,10 @@ class donhang extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_mathang',
+        // 'id_mathang',
         'nguoimua',
+        'sodienthoai',
+        'diachi',
         'ngaymua',
         'tongtien',
         'trangthai',
@@ -24,9 +26,9 @@ class donhang extends Model
     {
         return $this->hasMany(chitietdonhang::class, 'id_donhang', 'id');
     }
-    public function mathangs()
-    {
-        return $this->hasOne(mathang::class, 'id', 'id_mathang');
-    }
+    // public function mathangs()
+    // {
+    //     return $this->hasOne(mathang::class, 'id', 'id_mathang');
+    // }
     
 }

@@ -81,7 +81,8 @@ class HomeController extends Controller
     }
     public function checkout()
     {
-        return view('pages.checkout');
+        $donhang = donhang::all();
+        return view('pages.checkout', ['donhang' => $donhang]);
     }
     public function error()
     {
@@ -108,17 +109,24 @@ class HomeController extends Controller
         $mathang = $request->idmathang;
         $mathangs = mathang::find($mathang);
         $cart = (session()->has('cart')) ? session()->get('cart') : [];
-        $cart = [
-            'idmathang' => $mathang,
-            'soluong' => $mathangs->soluong,
-        ];
+        if (array_key_exists($mathangs->id, $cart)) {
+            $cart[$mathangs->id]['soluong'] = $cart[$mathangs->id]['soluong'] + 1;
+        } else {
+            $cart[$mathangs->id] = [
+                'idmathang' => $mathang,
+                'soluong' => 1,
+                'name' => $mathangs->name,
+                'gia' => $mathangs->gia,
+                'id_product' => $mathangs->id_product,
+            ];
+        }
+
         $count = count($cart);
         session()->put([
             'cart' => $cart,
             'count' => $count,
         ]);
         return response()->json([
-            'code' => 'ok',
             'mathang' => session()->get('cart'),
             'count' => session()->get('count'),
         ]);
