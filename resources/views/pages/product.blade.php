@@ -18,7 +18,7 @@
                                                     alt="{{ route('admin.mathang.show', ['mathang' => $mathang]) }}" />
                                                 <h2>{{ number_format($mathang->gia) }}</h2>
                                                 <p><a
-                                                        href="{{ route('mathangshow', [ $mathang->id]) }}">{{ $mathang->name }}</a>
+                                                        href="{{ route('mathangshow', [$mathang->id]) }}">{{ $mathang->name }}</a>
                                                 </p>
                                                 <button id="addtocart{{ $mathang->id }}"
                                                     class="btn btn-default add-to-cart"><i
@@ -34,12 +34,12 @@
                                             </div>
                                         </div> --}}
                                         </div>
-                                        <div class="choose">
+                                        {{-- <div class="choose">
                                             <ul class="nav nav-pills nav-justified">
                                                 <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
                                                 <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
                                             </ul>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             @endif
@@ -66,6 +66,7 @@
                                                     alt="" />
                                                 <h2>{{ number_format($mathang->gia) }}</h2>
                                                 Sale: <h5>
+                                                    <p>{{$mathang->is_sale}}%</p>
                                                     {{ number_format($mathang->gia - ($mathang->gia * $mathang->is_sale) / 100) }}
                                                 </h5>
                                                 <p>{{ $mathang->name }}</p>
@@ -83,12 +84,12 @@
                                             </div>
                                         </div> --}}
                                         </div>
-                                        <div class="choose">
+                                        {{-- <div class="choose">
                                             <ul class="nav nav-pills nav-justified">
                                                 <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
                                                 <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
                                             </ul>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             @endif
@@ -108,7 +109,9 @@
         </div>
     </section>
 
+
 @endsection
+
 @section('script')
     @foreach ($mathangs as $mathang)
         <script>

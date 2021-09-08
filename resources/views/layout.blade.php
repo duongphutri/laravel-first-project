@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Home | E-Shopper</title>
+    <title>Home | Phone-Shopper</title>
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/prettyPhoto.css') }}" rel="stylesheet">
@@ -48,6 +48,9 @@
 <script src="{{ asset('assets/js/price-range.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.prettyPhoto.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
+<script src="https://cdn.tiny.cloud/1/a267502qydzxgg43fdpzeosbbclsgx3gik4tafk2s6oerfkc/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
+
 <!-- Messenger Plugin chat Code -->
 <div id="fb-root"></div>
 

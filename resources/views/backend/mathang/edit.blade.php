@@ -37,11 +37,11 @@
 
                     </select>
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="exampleInputEmail1">soluong</label>
                     <input type="text" class="form-control" value="{{ $mathang->soluong }}" name="soluong"
                         id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter soluong">
-                </div>
+                </div> --}}
                 <div class="form-group">
 
                     <label class="control-label" for="Company">chungloai</label>
@@ -49,7 +49,7 @@
                         @if (count($categories))
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}"
-                                    {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                    {{ old('id_category') == $category->id ? 'selected' : '' }}>
                                     {{ $category->name }}
                                 </option>
                             @endforeach
@@ -57,6 +57,24 @@
                             <option value="0">NULL</option>
                         @endif
                     </select>
+                     @if (count($thongtins))
+                     <div class="form-check form-check-inline">
+                    <label class="control-label" for="Company">Thông Tin</label>
+
+                            @foreach ($thongtins as $thongtin)
+
+                        <input class="form-check-input" type="checkbox"  name="id_thongtin"
+                            value="{{$thongtin->id}}">{{$thongtin->size}}
+                            {{$thongtin->dungluong}}
+                            {{$thongtin->mau}}
+                            {{$thongtin->chitiet}}
+                            @endforeach
+
+                    </div>
+                     @else
+                            <a value="0">NULL</a>
+
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">gia</label>

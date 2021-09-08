@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class chucnang_user extends Model
+class chucnang_users extends Model
 {
     use HasFactory;
 

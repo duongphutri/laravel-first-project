@@ -8,6 +8,7 @@ use App\Models\categories;
 use App\Models\images;
 use App\Models\mathang;
 use App\Models\Product;
+use App\Models\Thongtin;
 use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -35,10 +36,11 @@ class mathangController extends Controller
     {
         $products = product::all();
         $category = categories::all();
-
+        $thongtin = Thongtin::all();
         return view('backend.mathang.create', [
             'products' => $products,
             'categories' => $category,
+            'thongtins' => $thongtin,
         ]);
     }
 
@@ -48,7 +50,7 @@ class mathangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoremathangRequest $request)
     {
         $data = $request->except('_token');
         $created = mathang::create($data);
@@ -105,10 +107,12 @@ class mathangController extends Controller
     {
         $product = Product::all();
         $category = categories::all();
+        $thongtin = Thongtin::all();
         return view('backend.mathang.edit', [
             'mathang' => $mathang,
             'products' => $product,
             'categories' => $category,
+            'thongtins' => $thongtin,
         ]);
     }
 
@@ -119,7 +123,7 @@ class mathangController extends Controller
      * @param  \App\Models\mathang  $mathang
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, mathang $mathang)
+    public function update(UpdatemathangRequest $request, mathang $mathang)
     {
         $data = $request->except('_token');
         $mathang->update($data);

@@ -13,11 +13,11 @@
                 <table class="table table-condensed">
                     <thead>
                         <tr class="cart_menu">
-                            <td class="image">Item</td>
+                            <td class="name">tên</td>
                             <td class="description"></td>
-                            <td class="price">Price</td>
-                            <td class="quantity">Quantity</td>
-                            <td class="total">Total</td>
+                            <td class="price">giá</td>
+                            <td class="quantity">soluong</td>
+                            <td class="total">tổng tiền</td>
                             <td></td>
                         </tr>
                     </thead>
@@ -29,10 +29,11 @@
                         ?>
 
                         @foreach ($cart as $value)
+
                             <?php $tong += $value['gia'] * $value['soluong']; ?>
                             <tr>
-                                <td class="cart_product">
-                                    <a href=""><img src="images/cart/one.png" alt=""> {{ $value['name'] }}</a>
+                                <td>
+                                    <p>{{ $value['name'] }}</p>
                                 </td>
                                 <td class="cart_description">
                                     <h4><a href=""></a></h4>
@@ -74,6 +75,7 @@
                 <p>Choose if you have a discount code or reward points you want to use or would like to estimate your
                     delivery cost.</p>
             </div>
+
             <div class="row">
                 <div class="col-sm-6">
 
@@ -82,28 +84,28 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">nguoimua</label>
                             <input type="text" value="{{ old('nguoimua') }}" class="form-control" name="nguoimua"
-                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter nguoimua">
+                                  placeholder="Enter nguoimua">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">sodienthoai</label>
-                            <input type="text" value="{{ old('sodienthoai') }}" class="form-control" name="sodienthoai"
-                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter sodienthoai">
+                            <input type="tel" value="{{ old('sodienthoai') }}" class="form-control" name="sodienthoai"
+                                  placeholder="Enter sodienthoai">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">diachi</label>
                             <input type="text" value="{{ old('diachi') }}" class="form-control" name="diachi"
-                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter diachi">
+                                  placeholder="Enter diachi">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">tongtien</label>
                             <input type="text" value="{{ $tong }}" class="form-control" name="tongtien"
-                                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter tongtien">
+                                  placeholder="Enter tongtien">
                         </div>
 
                         <input type="hidden" value="đã đặt hàng" class="form-control" name="trangthai"
-                            id="exampleInputEmail1">
+                            >
                         <input type="text" value="{{ date('y-m-d') }}" class="form-control" name="ngaymua"
-                            id="exampleInputEmail1">
+                            >
                         <button type="submit" class="btn btn-primary">Submit</button>
 
                     </form>
@@ -144,7 +146,7 @@
 
                 </div>
             </div>
-            <div class="col-sm-6">
+            {{-- <div class="col-sm-6">
                 <div class="total_area">
                     <ul>
                         <li>Cart Sub Total <span>$59</span></li>
@@ -155,7 +157,7 @@
                     <a class="btn btn-default update" href="">Update</a>
                     <a class="btn btn-default check_out" href="">Check Out</a>
                 </div>
-            </div>
+            </div> --}}
         </div>
         </div>
     </section>

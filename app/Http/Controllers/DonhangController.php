@@ -100,7 +100,7 @@ class donhangController extends Controller
             unset($carts);
             session()->put('cart');
         }
-        return redirect()->view('pages.checkout');
+        return view('pages.checkout');
     }
 
     /**

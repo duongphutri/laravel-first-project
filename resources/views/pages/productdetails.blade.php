@@ -217,9 +217,11 @@
                                     <button id="addtocart{{ $mathang->id }}" class="btn btn-default add-to-cart"><i
                                             class="fa fa-shopping-cart"></i>Addtocart</button>
                                 </span>
-                                <p><b>Availability:</b> In Stock</p>
-                                <p><b>Condition:</b> New</p>
-                                <p><b>Brand:</b> Phone-SHOPPER</p>
+                                <p><b>SiZe:</b>{{ $mathang->thongtin ? $mathang->thongtin->size : 'NULL' }}</p>
+                                <p><b>Dung Lượng:</b> {{ $mathang->thongtin ? $mathang->thongtin->dungluong : 'NULL' }}
+                                </p>
+                                <p><b>Màu:</b> {{ $mathang->thongtin ? $mathang->thongtin->mau : 'NULL' }}</p>
+                                <p><b>Thong Tin:</b> {{ $mathang->thongtin ? $mathang->thongtin->chitiet : 'NULL' }}</p>
                                 <a href=""><img src="{{ asset('backend/images/product-details/share.png') }}"
                                         class="share img-responsive" alt="" /></a>
                             </div>
@@ -377,7 +379,9 @@
                                         data-href="https://www.facebook.com/permalink.php?story_fbid=345768805987472&amp;id=182245249006496&amp;comment_id=947602459137434"
                                         data-width="560" data-include-parent="false"></div>
                                     <p><b>Write Your Review</b></p>
-                                    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
+                                    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/"
+                                        data-width="" data-layout="standard" data-action="like" data-size="small"
+                                        data-share="true"></div>
                                     <form action="#">
                                         <span>
                                             <input type="text" placeholder="Your Name" />
@@ -444,7 +448,7 @@
                                                     <div class="productinfo text-center">
                                                         <img src="/storage/images/{{ isset($mathang->image_mathang) ? $mathang->image_mathang->file_nm : null }}"
                                                             alt="" />
-                                                            
+
                                                         <h2>{{ number_format($mathang->gia) }}</h2>
                                                         <p>{{ $mathang->name }}</p>
                                                         <button id="addtocart{{ $mathang->id }}"
@@ -471,4 +475,6 @@
             </div>
         </div>
     </section>
+
+
 @endsection

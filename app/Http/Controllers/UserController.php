@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -19,13 +21,13 @@ class UserController extends Controller
     {
         return view('backend.user.create');
     }
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
         $data = ($request->except('_token'));
 
         User::create($data);
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.user.index');
     }
     public function edit(User $data)
     {
@@ -36,11 +38,11 @@ class UserController extends Controller
 
         $data1 = $request->except('_token');
         $data->update($data1);
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.user.index');
     }
-    public function destroy($user)
+    public function destroy(User $data)
     {
-        User::find($user)->delete();
-        return redirect()->route('admin.users.index');
+        $data->delete();
+        return redirect()->route('admin.user.index');
     }
 }

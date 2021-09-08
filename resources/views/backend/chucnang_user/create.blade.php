@@ -210,6 +210,82 @@
                         <label class="form-check-label" for="inlineCheckbox1">destroy</label>
                     </div>
                 </div>
+                <div>
+                    <span>user:</span>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="route[]"
+                            value="admin.user.index">
+                        <label class="form-check-label" for="inlineCheckbox1">index</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="route[]"
+                            value="admin.user.show">
+                        <label class="form-check-label" for="inlineCheckbox1">show</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="route[]"
+                            value="admin.user.create">
+                        <label class="form-check-label" for="inlineCheckbox1">create</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="route[]"
+                            value="admin.user.store">
+                        <label class="form-check-label" for="inlineCheckbox1">store</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="route[]"
+                            value="admin.user.edit">
+                        <label class="form-check-label" for="inlineCheckbox1">edit</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="route[]"
+                            value="admin.user.update">
+                        <label class="form-check-label" for="inlineCheckbox1">update</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="route[]"
+                            value="admin.chitietdonhang.destroy">
+                        <label class="form-check-label" for="inlineCheckbox1">destroy</label>
+                    </div>
+                </div>
+                <div>
+                    <span>Thông Tin:</span>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="route[]"
+                            value="admin.thongtin.index">
+                        <label class="form-check-label" for="inlineCheckbox1">index</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="route[]"
+                            value="admin.thongtin.show">
+                        <label class="form-check-label" for="inlineCheckbox1">show</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="route[]"
+                            value="admin.thongtin.create">
+                        <label class="form-check-label" for="inlineCheckbox1">create</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="route[]"
+                            value="admin.thongtin.store">
+                        <label class="form-check-label" for="inlineCheckbox1">store</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="route[]"
+                            value="admin.thongtin.edit">
+                        <label class="form-check-label" for="inlineCheckbox1">edit</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="route[]"
+                            value="admin.thongtin.update">
+                        <label class="form-check-label" for="inlineCheckbox1">update</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="route[]"
+                            value="admin.chitietdonhang.destroy">
+                        <label class="form-check-label" for="inlineCheckbox1">destroy</label>
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>

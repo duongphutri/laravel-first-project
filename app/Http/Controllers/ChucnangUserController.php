@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chucnang_User;
+use App\Models\chucnang_users;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,9 +15,10 @@ class ChucnangUserController extends Controller
      */
     public function index()
     {
-        $datas = Chucnang_User::paginate(10);
+        $datas = chucnang_users::paginate(10);
+        // dd($datas);
         $user = user::all();
-        return view('backend.chucnang_user.index', ['data' => $datas, 'users' => $user]);
+        return view('backend.chucnang_user.index', ['datas' => $datas, 'users' => $user]);
     }
 
     /**
@@ -40,7 +41,7 @@ class ChucnangUserController extends Controller
     public function store(Request $request)
     {
         foreach ($request->route as $route) {
-            Chucnang_User::create([
+            chucnang_users::create([
                 'id_user' => $request->email,
                 'nameroute' => $route,
             ]);
@@ -55,7 +56,7 @@ class ChucnangUserController extends Controller
      * @param  \App\Models\Chucnang_User  $chucnang_User
      * @return \Illuminate\Http\Response
      */
-    public function show(Chucnang_User $chucnang_User)
+    public function show(chucnang_users $chucnang_User)
     {
         return view('backend.chucnang_user.show', ['chucnang_User' => $chucnang_User]);
     }
@@ -66,7 +67,7 @@ class ChucnangUserController extends Controller
      * @param  \App\Models\Chucnang_User  $chucnang_User
      * @return \Illuminate\Http\Response
      */
-    public function edit(Chucnang_User $chucnang_User)
+    public function edit(chucnang_users $chucnang_User)
     {
         return view('backend.chucnang_user.edit', ['chucnang_User' => $chucnang_User]);
     }
@@ -78,7 +79,7 @@ class ChucnangUserController extends Controller
      * @param  \App\Models\Chucnang_User  $chucnang_User
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Chucnang_User $chucnang_User)
+    public function update(Request $request, chucnang_users $chucnang_User)
     {
         $data = $request->except('_token');
         $chucnang_User->update($data);
@@ -91,7 +92,7 @@ class ChucnangUserController extends Controller
      * @param  \App\Models\ChucnanAg_User  $chucnang_User
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Chucnang_User $chucnang_User)
+    public function destroy(chucnang_users $chucnang_User)
     {
         $chucnang_User->delete();
 
@@ -102,7 +103,7 @@ class ChucnangUserController extends Controller
         $listProduct = $request->deleteProduct;
 
         foreach ($listProduct as $productId) {
-            Chucnang_User::find($productId)->delete();
+            chucnang_users::find($productId)->delete();
         }
 
         return redirect()->route('admin.chucnang.index');

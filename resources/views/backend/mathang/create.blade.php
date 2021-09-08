@@ -41,6 +41,38 @@
                             <option value="0">NULL</option>
                         @endif
                     </select>
+                    {{-- <label class="control-label" for="Company">Thông Tin</label>
+                    <select class="form-control" name="id_thongtin">
+                        @if (count($thongtins))
+                            @foreach ($thongtins as $thongtin)
+                                <option value="{{ $thongtin->id }}"
+                                    {{ old('thongtin_id') == $thongtin->id ? 'selected' : '' }}>
+                                    {{$thongtin->name}}
+                                </option>
+                            @endforeach
+                        @else
+                            <option value="0">NULL</option>
+                        @endif
+                    </select> --}}
+                    @if (count($thongtins))
+                     <div class="form-check form-check-inline">
+                    <label class="control-label" for="Company">Thông Tin</label>
+
+                            @foreach ($thongtins as $thongtin)
+
+                        <input class="form-check-input" type="checkbox"  name="id_thongtin"
+                            value="{{$thongtin->id}}">{{$thongtin->size}}
+                            {{$thongtin->dungluong}}
+                            {{$thongtin->mau}}
+                            {{$thongtin->chitiet}}
+                            @endforeach
+
+                    </div>
+                     @else
+                            <a value="0">NULL</a>
+
+                    @endif
+
 
                     {{-- <div class="form-group">
                             <label for="exampleInputEmail1">soluong</label>

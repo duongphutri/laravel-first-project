@@ -37,11 +37,11 @@
                                             </th>
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->category ? $product->category->name : 'NULL' }}</td>
-                                            <td>
+                                            {{-- <td>
                                                 <img style="width: 20%"
                                                     src="/storage/images/{{ isset($product->image_product) ? $product->image_product->file_nm : null }}  "
                                                     alt="">
-                                            </td>
+                                            </td> --}}
                                             <td>{{ $product->created_by }}</td>
                                             <td>{{ $product->is_show ? 'true' : 'false' }}</td>
                                             <td>

@@ -13,6 +13,7 @@ use App\Http\Controllers\mathangController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ThongtinController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -253,9 +254,8 @@ Route::group(
                 Route::get('{data}/edit', [userController::class, 'edit'])->name('edit');
                 Route::post('update/{data}', [userController::class, 'update'])->name('update');
 
-                Route::get('destroy/{data}', [userController::class, 'destroy'])->name('destroy');
+                Route::get('destroy/{data}', [UserController::class, 'destroy'])->name('destroy');
 
-                Route::post('destroy/all', [userController::class, 'destroyAlluser'])->name('destroyAlluser');
             }
         );
         Route::group(
@@ -275,6 +275,25 @@ Route::group(
                 Route::post('update/{baogia}', [BaogiaController::class, 'update'])->name('update');
 
                 Route::get('destroy/{baogia}', [BaogiaController::class, 'destroy'])->name('destroy');
+            }
+        );
+        Route::group(
+            [
+                'as' => 'thongtin.',
+                'prefix' => 'thongtin',
+
+            ],
+            function () {
+                Route::get('/', [ThongtinController::class, 'index'])->name('index');
+                Route::get('show/{thongtin}', [ThongtinController::class, 'show'])->name('show');
+
+                Route::get('create', [ThongtinController::class, 'create'])->name('create');
+                Route::post('store', [ThongtinController::class, 'store'])->name('store');
+
+                Route::get('edit/{thongtin}', [ThongtinController::class, 'edit'])->name('edit');
+                Route::post('update/{thongtin}', [ThongtinController::class, 'update'])->name('update');
+
+                Route::get('destroy/{thongtin}', [ThongtinController::class, 'destroy'])->name('destroy');
             }
         );
     }

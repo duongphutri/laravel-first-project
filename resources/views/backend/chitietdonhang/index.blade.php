@@ -3,8 +3,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <a class="btn btn-primary" href="{{ route('admin.chitietdonhang.create') }}">create</a>
-                <button type="submit">DeleteAll</button>
+                {{-- <a class="btn btn-primary" href="{{ route('admin.chitietdonhang.create') }}">create</a> --}}
+                {{-- <button type="submit">DeleteAll</button> --}}
 
                 <div class="card">
                     <div class="card-header"></div>
@@ -17,8 +17,8 @@
                                     <th scope="col">id</th>
                                     <th scope="col">donhang</th>
                                     <th scope="col">mathang</th>
-                                    <th scope="col">soluong</th>
-                                    <th scope="col">gia</th>
+                                    <th scope="col">SĐT</th>
+                                    <th scope="col">Địa Chỉ</th>
                                     <th scope="col">thanhtien</th>
                                     <th scope="col">Action</th>
                                 </tr>

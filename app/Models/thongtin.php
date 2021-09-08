@@ -5,15 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class thongtin extends Model
+class Thongtin extends Model
 {
-    use HasFactory;
-    protected $fillable = [
 
+    protected $fillable = [
         'size',
         'dungluong',
         'mau',
-        'soluong',
+        // 'soluong',
         'chitiet',
     ];
+    use HasFactory;
+
+    public function mathangs()
+    {
+        return $this->hasMany(mathang::class, 'id_thongtin', 'id');
+    }
 }

@@ -61,6 +61,7 @@ class HomeController extends Controller
         return view('pages.productdetails', ['mathang' => $mathang]);
     }
     public function productdetails(mathang $mathang)
+    
     {
         return view('pages.productdetails', ['mathang' => $mathang]);
     }
@@ -74,10 +75,14 @@ class HomeController extends Controller
     }
     public function cart()
     {
-        $donhang = donhang::all();
-        // dd($donhang->all());
+        if (!empty(session()->get('cart'))) {
+            $donhang = donhang::all();
+            // dd($donhang->all());
 
-        return view('pages.cart', ['donhangs' => $donhang]);
+            return view('pages.cart', ['donhangs' => $donhang]);
+        } else {
+            return redirect()->route('product');
+        }
     }
     public function checkout()
     {

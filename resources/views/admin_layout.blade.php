@@ -105,7 +105,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                 <li><a href="{{ route('admin.categories.index') }}">Chủng Loại</a></li>
                                 <li><a href="{{ route('admin.product.index') }}">Sản Phẩm</a></li>
-                                <li><a href="{{ route('admin.mathang.index') }}">Maặt Hàng</a></li>
+                                <li><a href="{{ route('admin.mathang.index') }}">Mặt Hàng</a></li>
+                                <li><a href="{{ route('admin.thongtin.index') }}">Thông Tin</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
